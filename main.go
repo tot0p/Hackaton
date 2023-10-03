@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/tot0p/env"
 	"hackaton/controller"
+	"hackaton/utils/db/mysql"
 )
 
 func init() {
@@ -17,6 +18,7 @@ func init() {
 }
 
 func main() {
+	mysql.InitDB(env.Get("DB_HOST"), env.Get("DB_PORT"), env.Get("DB_USER"), env.Get("DB_PASSWORD"), env.Get("DB_DATABASE"))
 	r := gin.Default()
 	r.LoadHTMLGlob("src/templates/*")
 

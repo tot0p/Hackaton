@@ -2,6 +2,7 @@ package mysql
 
 import (
 	"database/sql"
+	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"time"
 )
@@ -29,7 +30,6 @@ func InitDB(host, port, user, password, database string) {
 		Database: database,
 	}
 	var err error
-
 	DB.Conn, err = sql.Open("mysql", user+":"+password+"@tcp("+host+":"+port+")/"+database)
 	if err != nil {
 		panic(err.Error())
