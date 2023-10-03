@@ -20,9 +20,7 @@ func main() {
 	r := gin.Default()
 	r.LoadHTMLGlob("src/templates/*")
 
-	r.Static("/html", "./src/html")
-	r.Static("/css", "./src/css")
-	r.Static("/js", "./src/js")
+	r.Static("/static", "./src/static")
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
