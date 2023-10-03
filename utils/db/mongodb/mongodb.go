@@ -22,6 +22,11 @@ func NewMongoDB(uri string) (*MongoDB, error) {
 	}, nil
 }
 
+// NewDatabase creates a new MongoDB database
+func (m *MongoDB) NewDatabase(db string) *mongo.Database {
+	return m.client.Database(db)
+}
+
 // NewCollection creates a new MongoDB collection
 func (m *MongoDB) NewCollection(db, collection string) *mongo.Collection {
 	return m.client.Database(db).Collection(collection)
@@ -35,6 +40,11 @@ func (m *MongoDB) GetClient() *mongo.Client {
 // GetCollection returns a MongoDB collection
 func (m *MongoDB) GetCollection(db, collection string) *mongo.Collection {
 	return m.client.Database(db).Collection(collection)
+}
+
+// GetAllData returns all data from a MongoDB collection
+func (m *MongoDB) GetAllData(db, collection string) (*mongo.Cursor, error) {
+	return m.GetCollection(db, collection).Find(context.Background(), nil)
 }
 
 // Disconnect closes the MongoDB connection
