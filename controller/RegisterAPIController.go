@@ -23,9 +23,9 @@ func RegisterAPIController(ctx *gin.Context) {
 		return
 	}
 
-	ses := session.SessionsManager.CreateSession(ctx, &User)
+	ses := session.SessionsManager.AddSession(&User)
 
 	ctx.JSON(200, gin.H{
-		"user": ses.GetUser(),
+		"session": ses.GetUUID(),
 	})
 }
