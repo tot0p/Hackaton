@@ -2,7 +2,12 @@ module hackaton
 
 go 1.21.1
 
-require github.com/gin-gonic/gin v1.9.1
+require (
+	github.com/gin-gonic/gin v1.9.1
+	github.com/google/uuid v1.3.1
+	github.com/tot0p/env v0.0.0-20230302141110-bf61dd049d8f
+	golang.org/x/crypto v0.13.0
+)
 
 require (
 	github.com/bytedance/sonic v1.10.1 // indirect
@@ -24,7 +29,6 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	golang.org/x/arch v0.5.0 // indirect
-	golang.org/x/crypto v0.13.0 // indirect
 	golang.org/x/net v0.15.0 // indirect
 	golang.org/x/sys v0.12.0 // indirect
 	golang.org/x/text v0.13.0 // indirect
