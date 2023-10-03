@@ -21,6 +21,15 @@ type session struct {
 	User *model.User
 }
 
+func (s *sessionsManager) IsLogged(ctx *gin.Context) bool {
+	cookie, err := ctx.Cookie("session")
+	if err != nil {
+		return false
+	}
+	_, ok := s.Sessions[cookie]
+	return ok
+}
+
 func GetSessionByUUID(uuid string) *session {
 	return SessionsManager.Sessions[uuid]
 }
