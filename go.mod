@@ -5,7 +5,7 @@ go 1.21.1
 require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/google/uuid v1.3.1
-	github.com/tot0p/env v0.0.0-20230302141110-bf61dd049d8f
+	github.com/tot0p/env v0.0.0-20231003101102-33034f1a49d0
 	golang.org/x/crypto v0.13.0
 )
 
