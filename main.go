@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/tot0p/env"
 	"hackaton/controller"
+	"hackaton/utils/db/mongodb"
 	"hackaton/utils/db/mysql"
 )
 
@@ -14,12 +15,16 @@ func init() {
 		panic(err)
 	}
 
+	mysql.InitDB(env.Get("DB_HOST"), env.Get("DB_PORT"), env.Get("DB_USER"), env.Get("DB_PASSWORD"), env.Get("DB_DATABASE"))
+	err = mongodb.NewMongoDB(env.Get("URI_MONGODB"))
+	if err != nil {
+		panic(err)
+	}
 	//gin.SetMode(gin.ReleaseMode)
 
 }
 
 func main() {
-	mysql.InitDB(env.Get("DB_HOST"), env.Get("DB_PORT"), env.Get("DB_USER"), env.Get("DB_PASSWORD"), env.Get("DB_DATABASE"))
 	r := gin.Default()
 	r.LoadHTMLGlob("src/templates/*")
 
@@ -41,7 +46,8 @@ func main() {
 	api := r.Group("/api")
 	api.POST("/login", controller.LoginAPIController)
 	api.POST("/register", controller.RegisterAPIController)
-	api.POST("/data/:id", controller.DataSetByIdAPIController)
+	api.GET("/data/names", controller.DataSetNamesAPIController)
+	//api.GET("/data/:id", controller.DataSetByIdAPIController)
 
 	fmt.Println("Start server on port " + env.Get("PORT") + " ...")
 	if err := r.Run(":" + env.Get("PORT")); err != nil {

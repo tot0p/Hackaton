@@ -11,15 +11,15 @@ func TestMongoDBPing(t *testing.T) {
 		t.Error(err)
 	}
 
-	m, err := NewMongoDB(env.Get("URI_MONGODB"))
+	err = NewMongoDB(env.Get("URI_MONGODB"))
 	if err != nil {
 		t.Error(err)
 	}
-	err = m.Ping()
+	err = DB.Ping()
 	if err != nil {
 		t.Error(err)
 	}
-	err = m.Disconnect()
+	err = DB.Disconnect()
 	if err != nil {
 		t.Error(err)
 	}

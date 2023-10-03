@@ -2,24 +2,28 @@ package mongodb
 
 import (
 	"context"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
+
+var DB *MongoDB // MongoDB connection
 
 type MongoDB struct {
 	client *mongo.Client
 }
 
 // NewMongoDB creates a new MongoDB connection
-func NewMongoDB(uri string) (*MongoDB, error) {
+func NewMongoDB(uri string) error {
 	clientOptions := options.Client().ApplyURI(uri)
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return &MongoDB{
+	DB = &MongoDB{
 		client: client,
-	}, nil
+	}
+	return nil
 }
 
 // NewDatabase creates a new MongoDB database
@@ -42,9 +46,14 @@ func (m *MongoDB) GetCollection(db, collection string) *mongo.Collection {
 	return m.client.Database(db).Collection(collection)
 }
 
+// GetAllCollectionsNames returns all collections names from a MongoDB database
+func (m *MongoDB) GetAllCollectionsNames(db string) ([]string, error) {
+	return m.client.Database(db).ListCollectionNames(context.Background(), bson.D{})
+}
+
 // GetAllData returns all data from a MongoDB collection
 func (m *MongoDB) GetAllData(db, collection string) (*mongo.Cursor, error) {
-	return m.GetCollection(db, collection).Find(context.Background(), nil)
+	return m.GetCollection(db, collection).Find(context.Background(), bson.D{})
 }
 
 // Disconnect closes the MongoDB connection
