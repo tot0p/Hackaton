@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+    <h1>register</h1>
+    <form action="/register" method="post">
+        <!-- Pseudo -->
+        <div>
+            <label for="pseudo">Pseudo</label>
+            <input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" required>
+        </div>
+        <!-- Email -->
+        <div   >
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+        </div>
+
+        <!-- Phone -->
+        <div>
+
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone" id="phone" placeholder="Phone" required>
+        </div>
+        <!-- Password -->
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+        </div>
+        <!-- Password confirmation -->
+        <div>
+            <label for="password_confirmation">Password confirmation</label>
+            <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Password confirmation" required>
+        </div>
+        <!-- Submit -->
+        <input type="submit">
+        {{if .error}}
+        <div class="error">
+            {{.error}}
+        </div>
+        {{end}}
+
+
+    </form>
+</body>
+</html>
