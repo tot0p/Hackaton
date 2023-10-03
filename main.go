@@ -50,13 +50,14 @@ func main() {
 	r.GET("/index", controller.IndexController)
 
 	r.GET("/login", controller.LoginController)
+	r.POST("/login", controller.LoginPostController)
 
 	r.GET("/register", controller.RegisterController)
 	r.POST("/register", controller.RegisterPostController)
 
 	//API
 	api := r.Group("/api")
-	api.POST("/login", controller.LoginAPIController)
+
 	api.GET("/data/names", controller.DataSetNamesAPIController)
 	api.GET("/data/:id", controller.DataSetByIdAPIController)
 

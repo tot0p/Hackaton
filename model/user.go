@@ -1,5 +1,9 @@
 package model
 
+import (
+	"hackaton/utils/hash"
+)
+
 const (
 	RoleAdmin = iota
 	RoleElected
@@ -13,6 +17,10 @@ type User struct {
 	Email    string `json:"email"`
 	Phone    string `json:"phone"`
 	Role     int    `json:"role"`
+}
+
+func (u *User) ComparePassword(password string) bool {
+	return hash.CheckPasswordHash(password, u.Password)
 }
 
 func (u *User) RemovePassword() {

@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>register</title>
 </head>
 <body>
+<h1>register</h1>
+<form action="/login" method="post">
+    <!-- Pseudo -->
+    <div>
+        <label for="pseudo">Pseudo</label>
+        <input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" required>
+    </div>
+    <!-- Password -->
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password" required>
+    </div>
+    <!-- Submit -->
+    <input type="submit">
+    {{if .error}}
+    <div class="error">
+        {{.error}}
+    </div>
+    {{end}}
 
+
+</form>
 </body>
 </html>
