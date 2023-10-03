@@ -1,13 +1,17 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/tot0p/env"
 	"hackaton/controller"
+	"hackaton/utils"
 	"hackaton/utils/db/mongodb"
 	"hackaton/utils/db/mysql"
 )
+
+var openBrowser *bool = new(bool)
 
 func init() {
 	err := env.Load()
@@ -21,6 +25,11 @@ func init() {
 		panic(err)
 	}
 	//gin.SetMode(gin.ReleaseMode)
+
+	flag.BoolVar(openBrowser, "open", true, "Open browser automatically")
+	flag.BoolVar(openBrowser, "o", true, "Open browser automatically")
+
+	flag.Parse()
 
 }
 
@@ -47,8 +56,11 @@ func main() {
 	api.POST("/login", controller.LoginAPIController)
 	api.POST("/register", controller.RegisterAPIController)
 	api.GET("/data/names", controller.DataSetNamesAPIController)
-	//api.GET("/data/:id", controller.DataSetByIdAPIController)
+	api.GET("/data/:id", controller.DataSetByIdAPIController)
 
+	if *openBrowser {
+		utils.Openbrowser("http://localhost:" + env.Get("PORT"))
+	}
 	fmt.Println("Start server on port " + env.Get("PORT") + " ...")
 	if err := r.Run(":" + env.Get("PORT")); err != nil {
 		panic(err)
