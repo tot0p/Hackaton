@@ -1,6 +1,7 @@
 package session
 
 import (
+	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"hackaton/model"
 )
@@ -22,6 +23,12 @@ type session struct {
 
 func GetSessionByUUID(uuid string) *session {
 	return SessionsManager.Sessions[uuid]
+}
+
+func (s *sessionsManager) CreateSession(ctx *gin.Context, user *model.User) *session {
+	ses := s.AddSession(user)
+	ctx.SetCookie("session", ses.UUID, 86400, "/", "", false, false)
+	return ses
 }
 
 func (s *sessionsManager) AddSession(user *model.User) *session {

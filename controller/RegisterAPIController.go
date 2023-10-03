@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"hackaton/model"
 	"hackaton/utils/db/mysql"
+	"hackaton/utils/session"
 )
 
 func RegisterAPIController(ctx *gin.Context) {
@@ -14,11 +15,17 @@ func RegisterAPIController(ctx *gin.Context) {
 	Role := model.RoleUser
 
 	User, err := mysql.CreateUser(Pseudo, Password, Email, Phone, Role)
+	User.RemovePassword()
 	if err != nil {
 		ctx.JSON(500, gin.H{
 			"error": err.Error(),
 		})
 		return
 	}
-	ctx.JSON(200, User)
+
+	ses := session.SessionsManager.CreateSession(ctx, &User)
+
+	ctx.JSON(200, gin.H{
+		"user": ses.GetUser(),
+	})
 }
