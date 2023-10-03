@@ -22,6 +22,11 @@ func NewMongoDB(uri string) (*MongoDB, error) {
 	}, nil
 }
 
+// NewCollection creates a new MongoDB collection
+func (m *MongoDB) NewCollection(db, collection string) *mongo.Collection {
+	return m.client.Database(db).Collection(collection)
+}
+
 // GetClient returns the MongoDB client
 func (m *MongoDB) GetClient() *mongo.Client {
 	return m.client
