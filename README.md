@@ -18,8 +18,8 @@ Base de données pour les datasets et les api [mongoDB]()
 
 ### Front
 
-- Chart.js
-- Backgrid.js
+- React
+
 
 
 ## Les pages du site
