@@ -20,3 +20,32 @@ Base de données pour les datasets et les api [mongoDB]()
 
 Chart.js
 
+
+## Les pages du site
+
+### Page d'accueil
+
+- Présentation du projet
+- login / register 
+
+### Tableau de bord
+
+- Affichage des datasets et api
+
+### Page des tickets
+
+- affichage des tickets
+- accès au traitement du ticket
+
+### Page de traitement du ticket
+
+- affichage du ticket
+- affichage des datasets et api reliés au ticket (à voir)
+- possibilité de répondre au ticket
+- possibilité de fermer le ticket
+
+### Création d'un ticket
+
+- formulaire de création d'un ticket
+- possibilité de lier un dataset ou une api
+
