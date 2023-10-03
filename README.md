@@ -32,12 +32,12 @@ Chart.js
 
 - Affichage des datasets et api
 
-### Page des tickets
+### Page des tickets (accès restreint aux élus locaux et aux administrateurs)
 
 - affichage des tickets
 - accès au traitement du ticket
 
-### Page de traitement du ticket
+### Page de traitement du ticket (accès restreint aux élus locaux et aux administrateurs
 
 - affichage du ticket
 - affichage des datasets et api reliés au ticket (à voir)
