@@ -17,13 +17,12 @@ func main() {
 	}
 
 	// Connect to MongoDB
-	m, err := mongodb.NewMongoDB(env.Get("URI_MONGODB"))
+	err = mongodb.NewMongoDB(env.Get("URI_MONGODB"))
 	if err != nil {
 		panic(err)
 	}
-	defer m.Disconnect()
 
-	err = m.Ping()
+	err = mongodb.DB.Ping()
 	if err != nil {
 		panic(err)
 	}
@@ -37,9 +36,9 @@ func main() {
 	for _, name := range allNames {
 		DataSetName := name.Name()[:len(name.Name())-5]
 		// Create collections if not exists
-		collection := m.GetCollection("DataSets", DataSetName)
+		collection := mongodb.DB.GetCollection("DataSets", DataSetName)
 		if collection == nil {
-			m.NewCollection("DataSets", DataSetName)
+			mongodb.DB.NewCollection("DataSets", DataSetName)
 		}
 
 		// Insert dataset in collection
@@ -57,10 +56,14 @@ func main() {
 
 		err = json.Unmarshal(body, &data)
 
-		_, err = m.InsertMany("DataSets", DataSetName, data)
+		_, err = mongodb.DB.InsertMany("DataSets", DataSetName, data)
 		if err != nil {
 			panic(err)
 		}
 		file.Close()
+	}
+	err = mongodb.DB.Disconnect()
+	if err != nil {
+		panic(err)
 	}
 }
