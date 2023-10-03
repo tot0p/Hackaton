@@ -6,6 +6,7 @@ import (
 	"hackaton/utils/db/mongodb"
 	"io"
 	"os"
+	"sync"
 )
 
 // Create collections and insert the dataset in it
@@ -33,35 +34,45 @@ func main() {
 		panic(err)
 	}
 
+	var wg sync.WaitGroup
+
 	for _, name := range allNames {
-		DataSetName := name.Name()[:len(name.Name())-5]
-		// Create collections if not exists
-		collection := mongodb.DB.GetCollection("DataSets", DataSetName)
-		if collection == nil {
-			mongodb.DB.NewCollection("DataSets", DataSetName)
-		}
+		wg.Add(1)
+		go func(name os.DirEntry) {
+			defer wg.Done()
 
-		// Insert dataset in collection
-		file, err := os.Open("scraping/datasets/" + name.Name())
-		if err != nil {
-			panic(err)
-		}
+			DataSetName := name.Name()[:len(name.Name())-5]
+			// Create collections if not exists
+			collection := mongodb.DB.GetCollection("DataSets", DataSetName)
+			if collection == nil {
+				mongodb.DB.NewCollection("DataSets", DataSetName)
+			}
 
-		body, err := io.ReadAll(file)
-		if err != nil {
-			panic(err)
-		}
+			// Insert dataset in collection
+			file, err := os.Open("scraping/datasets/" + name.Name())
+			if err != nil {
+				panic(err)
+			}
 
-		var data []interface{}
+			body, err := io.ReadAll(file)
+			if err != nil {
+				panic(err)
+			}
 
-		err = json.Unmarshal(body, &data)
+			var data []interface{}
 
-		_, err = mongodb.DB.InsertMany("DataSets", DataSetName, data)
-		if err != nil {
-			panic(err)
-		}
-		file.Close()
+			err = json.Unmarshal(body, &data)
+
+			_, err = mongodb.DB.InsertMany("DataSets", DataSetName, data)
+			if err != nil {
+				panic(err)
+			}
+			file.Close()
+		}(name)
 	}
+
+	wg.Wait()
+
 	err = mongodb.DB.Disconnect()
 	if err != nil {
 		panic(err)
