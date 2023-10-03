@@ -12,7 +12,7 @@ Le petit plus permettre aux élus locaux d'ajouter des datasets ou api et aux ci
 
 Golang utilisant le framework [gin]()
 
-Base de données pour les élus locaux et les citoyens
+Base de données pour les élus locaux et les citoyens [MySQL]()
 
 Base de données pour les datasets et les api [mongoDB]()
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/tot0p/env"
 	"hackaton/controller"
@@ -40,7 +41,9 @@ func main() {
 	api := r.Group("/api")
 	api.POST("/login", controller.LoginAPIController)
 	api.POST("/register", controller.RegisterAPIController)
+	api.POST("/data/:id", controller.DataSetByIdAPIController)
 
+	fmt.Println("Start server on port " + env.Get("PORT") + " ...")
 	if err := r.Run(":" + env.Get("PORT")); err != nil {
 		panic(err)
 	}
