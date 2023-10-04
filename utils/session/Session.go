@@ -41,7 +41,11 @@ func (s *sessionsManager) GetUser(ctx *gin.Context) *model.User {
 	if err != nil {
 		return nil
 	}
-	return s.Sessions[cookie].GetUser()
+	user, ok := s.Sessions[cookie]
+	if !ok {
+		return nil
+	}
+	return user.GetUser()
 }
 
 // CreateSession creates a new session for the given user and set the cookie in the context

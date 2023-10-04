@@ -61,6 +61,10 @@ func main() {
 	//Profile
 	r.GET("/profil", controller.ProfilController)
 
+	//Ticket
+	r.GET("/newticket", controller.NewTicketController)
+	r.POST("/newticket", controller.NewTicketPostController)
+
 	//API Group
 	api := r.Group("/api")
 

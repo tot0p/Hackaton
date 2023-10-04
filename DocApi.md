@@ -43,7 +43,7 @@ si erreur:
 }
 ```
 
-## /api/data/name/{name/filter GET
+## /api/data/name/{name}/filter GET
 
 require query params:
 - q : query string
@@ -66,7 +66,7 @@ si erreur:
 }
 ```
 
-## /api/data/name/{name/filters GET
+## /api/data/name/{name}/filters GET
 
 require query params:
 - q : query string
