@@ -9,7 +9,7 @@ module.exports = {
         'background': '#FFFFFF',
         'primary': '#6892D5',
         'secondary': '#C9FDD7',
-        'tertiary': '#F9F9F9',
+        'tertiary': '#84CAF0',
       },
       fontFamily: {
         'primary': ['IntegralCF'],
