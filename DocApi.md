@@ -43,6 +43,22 @@ si erreur:
 }
 ```
 
+## /api/data/name/{name/filter GET
+
+require query params:
+- q : query string
+
+q est un json qui sert de filtre avec ce format:
+```json
+{
+  "field1": "value1",
+  "field2": "value2",
+  "field3": "value3"
+}
+```
+
+Donnes une donnée du dataset {name} filtrée par q
+
 ## /api/data/name/{name}/field/{field}/value/{value} GET
 
 Donnes les données du dataset {name} où le champ {field} est égal à {value}
