@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
     <link rel="stylesheet" href="../static/css/login.css"/>
     <link rel="stylesheet" href="../static/css/output.css"/>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-left">
             <button class="nav-btn">Dataset</button>
@@ -21,24 +23,45 @@
             <button class="nav-btn">Register</button>
         </div>
     </nav>
-    <form action="/login" method="post" class="">
+    <!-- End Navbar -->
+    <form action="/login" method="post" class="format">
         <!-- Pseudo -->
         <div>
-            <label for="pseudo">Username</label>
-            <input type="text" name="pseudo" id="pseudo" placeholder="Username" required>
+            <label for="pseudo" class="label">Username</label>
+            <input type="text" class="text" name="pseudo" id="pseudo" placeholder="Username" required>
         </div>
         <!-- Password -->
         <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password" required>
+            <label for="password" class="label">Password</label>
+            <input type="password" class="text" name="password" id="password" placeholder="Password" required>
         </div>
         <!-- Submit -->
-        <input type="submit">
+        <input class="submit" type="submit">
         {{if .error}}
         <div class="error">
             {{.error}}
         </div>
         {{end}}
     </form>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-left">
+            <img src="../static/media/logo.png" alt="Your Logo" class="logo">
+        </div>
+        <div class="footer-center">
+            <p>&copy; 2023 Your Company Name</p>
+            <p>123 Street Address, City, Country</p>
+        </div>
+        <div class="footer-right">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+    <!-- End Footer -->
 </body>
 </html>

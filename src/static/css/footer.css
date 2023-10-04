@@ -5,6 +5,7 @@
     background-color: #6892D5;
     padding: 40px 80px; /* rend le footer 2 fois plus épais que la navbar */
     color: #2A3B57;
+    margin-top: 60px;
 }
 
 .logo { 

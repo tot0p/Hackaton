@@ -12,6 +12,7 @@ body {
     background-color: #6892D5;
     padding: 40px 80px; /* Augmenter le padding pour avoir une navbar plus épaisse */
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 60px;
 }
 
 .nav-btn {
