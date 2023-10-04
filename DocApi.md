@@ -57,6 +57,12 @@ si erreur:
 
 Donnes les champs du dataset {name}
 
+paramètres optionnels:
+
+- rmId : bool (default: false) : si true, supprime le champ _id
+- rmMulFields : bool (default: false) : si true, supprime les champs qui sont des tableaux
+
+
 si erreur:
 ```json
 {
