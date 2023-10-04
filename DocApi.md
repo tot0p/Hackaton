@@ -20,9 +20,20 @@ si erreur:
 }
 ```
 
-## /api/data/categories GET
+## /api/data/category GET
 
 Donnes les datasets par catégories
+
+si erreur:
+```json
+{
+"error": "message d'erreur"
+}
+```
+
+## /data/category/{category}
+
+Donnes les datasets de la catégorie {category}
 
 si erreur:
 ```json

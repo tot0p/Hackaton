@@ -73,7 +73,8 @@ func main() {
 	// DataSet
 
 	api.GET("/data/names", controller.DataSetNamesAPIController)
-	api.GET("/data/categories", controller.DataSetCategoriesAPIController)
+	api.GET("/data/category", controller.DataSetCategoriesAPIController)
+	api.GET("/data/category/:category", controller.DataSetByCategoryAPIController)
 	api.GET("/data/name/:name", controller.DataSetByNameAPIController)
 	api.GET("/data/name/:name/fields", controller.DataSetByNameGetFieldsAPIController)
 	api.GET("/data/name/:name/filter", controller.DataSetByNameFilterAPIController)

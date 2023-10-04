@@ -6,9 +6,7 @@ import (
 	"os"
 )
 
-const filePath = "src/data/category.json"
-
-func DataSetCategoriesAPIController(ctx *gin.Context) {
+func DataSetByCategoryAPIController(ctx *gin.Context) {
 	jsonData, err := os.ReadFile(filePath)
 	if err != nil {
 		ctx.JSON(500, gin.H{
@@ -24,6 +22,15 @@ func DataSetCategoriesAPIController(ctx *gin.Context) {
 		})
 		return
 	}
-	ctx.JSON(200, data)
 
+	for _, v := range data {
+		if v["theme"] == ctx.Param("category") {
+			ctx.JSON(200, v)
+			return
+		}
+	}
+
+	ctx.JSON(404, gin.H{
+		"error": "Category not found",
+	})
 }
