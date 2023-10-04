@@ -8,6 +8,11 @@ import (
 	"os"
 )
 
+var Dataset []struct {
+	ID    string `json:"dataset_id"`
+	Theme string `json:"theme"`
+}
+
 // Scraping get all datasets from opendata.paris.fr
 func main() {
 	// API URL to get all datasets
@@ -53,10 +58,6 @@ func main() {
 
 // CreateAllDatasets create all datasets json files
 func CreateAllDatasets() {
-	var data []struct {
-		DatasetID string `json:"dataset_id"`
-	}
-
 	// Open allDatasets.json file
 	file, err := os.OpenFile("scraping/allDatasets.json", os.O_RDONLY, 0744)
 	if err != nil {
@@ -68,22 +69,21 @@ func CreateAllDatasets() {
 	content, err := io.ReadAll(file)
 
 	// Unmarshal json data
-	err = json.Unmarshal(content, &data)
+	err = json.Unmarshal(content, &Dataset)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
 
+	//Themes := make(map[string][]string)
 	// Create json file for each dataset
-	for num, datasetID := range data {
+	for _, datasetID := range Dataset {
 		// GET datas from dataset
-		if num == 0 {
-			continue
-		} else {
-			GetDataFromDataset(datasetID.DatasetID)
-			fmt.Println("Num : ", num, " DatasetID : ", datasetID.DatasetID)
-		}
+		GetDataFromDataset(datasetID.ID)
+		// Create map with theme as key and names as value
+		//Themes[datasetID.Theme] = append(Themes[datasetID.Theme], datasetID.ID)
 	}
+	//CreateJSONTheme(Themes)
 }
 
 // GetDataFromDataset get data from dataset api request
@@ -123,5 +123,18 @@ func GetDataFromDataset(name string) {
 		}
 	} else {
 		fmt.Printf("Request failed with status code: %d\n", response.StatusCode)
+	}
+}
+
+// CreateJSONTheme create json file which link each dataset to a theme
+func CreateJSONTheme(Themes map[string][]string) {
+	jsonData, err := json.Marshal(Themes)
+	if err != nil {
+		panic(err)
+	}
+
+	err = os.WriteFile("scraping/DatasetsTheme.json", jsonData, 0744)
+	if err != nil {
+		panic(err)
 	}
 }
