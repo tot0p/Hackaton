@@ -5,6 +5,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"hackaton/utils"
 )
 
 var DB *MongoDB // MongoDB connection
@@ -78,13 +79,18 @@ func (m *MongoDB) Ping() error {
 	return m.client.Ping(context.Background(), nil)
 }
 
-func (m *MongoDB) GetFields(db, collection string) ([]string, error) {
+func (m *MongoDB) GetFields(db, collection string, _id, _mulfields bool) ([]string, error) {
 	data, err := m.FindOne(db, collection, bson.D{})
 	if err != nil {
 		return nil, err
 	}
 	var fields []string
 	for k := range data {
+		if k == "_id" && !_id {
+			continue
+		} else if utils.IsIterable(data[k]) && !_mulfields {
+			continue
+		}
 		fields = append(fields, k)
 	}
 	return fields, nil

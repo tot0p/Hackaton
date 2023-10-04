@@ -8,12 +8,13 @@ import (
 
 func DataSetByNameGetFieldsAPIController(ctx *gin.Context) {
 	name := ctx.Param("name")
-	data, err := mongodb.DB.GetFields(env.Get("DB_MONGODB"), name)
+	data, err := mongodb.DB.GetFields(env.Get("DB_MONGODB"), name, false, false)
 	if err != nil {
 		ctx.JSON(500, gin.H{
 			"error": err.Error(),
 		})
 		return
 	}
+
 	ctx.JSON(200, data)
 }
