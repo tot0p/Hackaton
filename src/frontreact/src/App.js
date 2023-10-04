@@ -5,16 +5,18 @@ import Dashboard from "./components/Playground/Dashboard";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import Testpiechart from './components/piechart/testpiechart';
+import MapWithVectorLayers from './components/mapWithVectorLayers/mapWithVectorLayers';
 
 function App() {
   return (
     <div className="App">
-        <Navbar/>
+        <Navbar/> 
         <DndProvider backend={HTML5Backend}>
         <Dashboard/>
         </DndProvider>
         <Footer/>
         <Testpiechart/>
+        <MapWithVectorLayers/>
     </div>
   );
 }

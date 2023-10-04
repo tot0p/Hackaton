@@ -10,8 +10,6 @@ class WorldMap extends Component {
       // Exemple de données de points (latitude et longitude)
       points: [
         { id: 1, lat: 51.505, lng: -0.09, label: 'Point 1' },
-        { id: 2, lat: 48.8566, lng: 2.3522, label: 'Point 2' },
-        { id: 3, lat: 40.7128, lng: -74.0060, label: 'Point 3' },
       ],
     };
   }
