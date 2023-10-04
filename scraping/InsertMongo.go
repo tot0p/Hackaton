@@ -37,7 +37,7 @@ func main() {
 
 	// Create a channel to limit concurrency to 4 goroutines
 
-	workerLimit := 4
+	workerLimit := 2
 	workerCh := make(chan struct{}, workerLimit)
 
 	var wg sync.WaitGroup
