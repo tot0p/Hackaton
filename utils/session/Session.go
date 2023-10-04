@@ -7,16 +7,16 @@ import (
 )
 
 func init() {
-	SessionsManager.Sessions = make(map[string]*session)
+	SessionsManager.Sessions = make(map[string]*Session)
 }
 
 var SessionsManager sessionsManager
 
 type sessionsManager struct {
-	Sessions map[string]*session
+	Sessions map[string]*Session
 }
 
-type session struct {
+type Session struct {
 	UUID string
 	User *model.User
 }
@@ -30,7 +30,15 @@ func (s *sessionsManager) IsLogged(ctx *gin.Context) bool {
 	return ok
 }
 
-func GetSessionByUUID(uuid string) *session {
+func (s *sessionsManager) GetUser(ctx *gin.Context) *model.User {
+	cookie, err := ctx.Cookie("session")
+	if err != nil {
+		return nil
+	}
+	return s.Sessions[cookie].GetUser()
+}
+
+func GetSessionByUUID(uuid string) *Session {
 	return SessionsManager.Sessions[uuid]
 }
 
@@ -40,9 +48,9 @@ func (s *sessionsManager) CreateSession(ctx *gin.Context, user *model.User) {
 	ctx.SetCookie("session", ses.GetUUID(), 3600, "/", domain, false, false)
 }
 
-func (s *sessionsManager) AddSession(user *model.User) *session {
+func (s *sessionsManager) AddSession(user *model.User) *Session {
 	u := uuid.New().String()
-	var ses *session = &session{
+	var ses = &Session{
 		UUID: u,
 		User: user,
 	}
@@ -54,10 +62,10 @@ func (s *sessionsManager) RemoveSession(uuid string) {
 	delete(s.Sessions, uuid)
 }
 
-func (s *session) GetUser() *model.User {
+func (s *Session) GetUser() *model.User {
 	return s.User
 }
 
-func (s *session) GetUUID() string {
+func (s *Session) GetUUID() string {
 	return s.UUID
 }

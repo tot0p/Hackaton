@@ -26,9 +26,8 @@ func init() {
 	}
 	//gin.SetMode(gin.ReleaseMode)
 
-	flag.BoolVar(openBrowser, "open", true, "Open browser automatically")
-	flag.BoolVar(openBrowser, "o", true, "Open browser automatically")
-
+	flag.BoolVar(openBrowser, "open", false, "Open browser automatically")
+	flag.BoolVar(openBrowser, "o", false, "Open browser automatically")
 	flag.Parse()
 
 }
@@ -49,11 +48,16 @@ func main() {
 	r.GET("/", controller.IndexController)
 	r.GET("/index", controller.IndexController)
 
+	//Login
 	r.GET("/login", controller.LoginController)
 	r.POST("/login", controller.LoginPostController)
 
+	//Register
 	r.GET("/register", controller.RegisterController)
 	r.POST("/register", controller.RegisterPostController)
+
+	//Profile
+	r.GET("/profil", controller.ProfilController)
 
 	//API
 	api := r.Group("/api")
