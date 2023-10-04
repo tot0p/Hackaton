@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6892D5;
+    padding: 40px 80px; /* Augmenter le padding pour avoir une navbar plus épaisse */
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn {
+    background-color: transparent; /* Suppression du fond pour rendre le bouton invisible */
+    border: none;
+    color: #2A3B57;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 18px; /* Augmentation de la taille de la police pour un texte plus gros */
+    margin: 5px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour un changement doux */
+}
+
+.nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Effet doux de lumière derrière le texte lors du survol */
+    color: #444B57; /* Légère variation de couleur pour le texte */
+}
+
+.home-btn {
+    font-size: 22px; /* Augmentation de la taille de la police pour "Home" */
+}
+
+.nav-left, .nav-center, .nav-right {
+    display: flex;
+    align-items: center;
+}

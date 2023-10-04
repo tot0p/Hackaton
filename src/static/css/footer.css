@@ -1,0 +1,35 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6892D5;
+    padding: 40px 80px; /* rend le footer 2 fois plus épais que la navbar */
+    color: #2A3B57;
+}
+
+.logo { 
+    width: 80px; /* Vous pouvez ajuster cette taille selon votre logo */
+    height: auto;
+}
+
+.footer-center p {
+    margin: 5px 0;
+}
+
+.footer-right ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.footer-right ul li a {
+    color: #2A3B57;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-right ul li a:hover {
+    color: #777;
+}
