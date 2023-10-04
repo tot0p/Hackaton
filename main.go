@@ -63,6 +63,7 @@ func main() {
 	api := r.Group("/api")
 
 	api.GET("/data/names", controller.DataSetNamesAPIController)
+	api.GET("/data/name/:name", controller.DataSetByNameAPIController)
 	api.GET("/data/:id", controller.DataSetByIdAPIController)
 
 	if *openBrowser {

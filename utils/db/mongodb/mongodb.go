@@ -52,8 +52,17 @@ func (m *MongoDB) GetAllCollectionsNames(db string) ([]string, error) {
 }
 
 // GetAllData returns all data from a MongoDB collection
-func (m *MongoDB) GetAllData(db, collection string) (*mongo.Cursor, error) {
-	return m.GetCollection(db, collection).Find(context.Background(), bson.D{})
+func (m *MongoDB) GetAllData(db, collection string) ([]bson.M, error) {
+	cursor, err := m.GetCollection(db, collection).Find(context.Background(), bson.D{})
+	if err != nil {
+		return nil, err
+	}
+	var data []bson.M
+	err = cursor.All(context.Background(), &data)
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
 }
 
 // Disconnect closes the MongoDB connection
