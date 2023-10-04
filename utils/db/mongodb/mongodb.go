@@ -91,8 +91,18 @@ func (m *MongoDB) FindOne(db, collection string, filter interface{}) *mongo.Sing
 }
 
 // Find finds documents in a MongoDB collection
-func (m *MongoDB) Find(db, collection string, filter interface{}) (*mongo.Cursor, error) {
-	return m.GetCollection(db, collection).Find(context.Background(), filter)
+func (m *MongoDB) Find(db, collection string, filter interface{}) ([]bson.M, error) {
+	cursor, err := m.GetCollection(db, collection).Find(context.Background(), filter)
+	if err != nil {
+		return nil, err
+	}
+	var data []bson.M
+	err = cursor.All(context.Background(), &data)
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
+
 }
 
 // UpdateOne updates one document in a MongoDB collection
