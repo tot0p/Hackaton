@@ -19,6 +19,7 @@ func init() {
 		panic(err)
 	}
 
+	// Init DB
 	mysql.InitDB(env.Get("DB_HOST"), env.Get("DB_PORT"), env.Get("DB_USER"), env.Get("DB_PASSWORD"), env.Get("DB_DATABASE"))
 	err = mongodb.NewMongoDB(env.Get("URI_MONGODB"))
 	if err != nil {
@@ -26,6 +27,7 @@ func init() {
 	}
 	//gin.SetMode(gin.ReleaseMode)
 
+	// Open browser flag
 	flag.BoolVar(openBrowser, "open", false, "Open browser automatically")
 	flag.BoolVar(openBrowser, "o", false, "Open browser automatically")
 	flag.Parse()
@@ -59,8 +61,10 @@ func main() {
 	//Profile
 	r.GET("/profil", controller.ProfilController)
 
-	//API
+	//API Group
 	api := r.Group("/api")
+
+	// DataSet
 
 	api.GET("/data/names", controller.DataSetNamesAPIController)
 	api.GET("/data/name/:name", controller.DataSetByNameAPIController)
@@ -68,9 +72,16 @@ func main() {
 	api.GET("/data/name/:name/filter", controller.DataSetByNameFilterAPIController)
 	api.GET("/data/name/:name/filters", controller.DataSetByNameFiltersAPIController)
 	api.GET("/data/name/:name/field/:field/value/:value", controller.DataSetByNameFieldAPIController)
+
+	// Tickets
+	//api.Get("/tickets", controller.TicketsController)
+
+	// Open browser if flag is true
 	if *openBrowser {
 		utils.OpenBrowser("http://localhost:" + env.Get("PORT"))
 	}
+
+	// Launch server
 	fmt.Println("Start server on port " + env.Get("PORT") + " ...")
 	if err := r.Run(":" + env.Get("PORT")); err != nil {
 		panic(err)

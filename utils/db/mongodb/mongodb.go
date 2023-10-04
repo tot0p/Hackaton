@@ -15,6 +15,9 @@ type MongoDB struct {
 
 // NewMongoDB creates a new MongoDB connection
 func NewMongoDB(uri string) error {
+	if DB != nil {
+		return nil
+	}
 	clientOptions := options.Client().ApplyURI(uri)
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {

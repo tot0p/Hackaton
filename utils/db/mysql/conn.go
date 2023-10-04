@@ -35,15 +35,18 @@ func InitDB(host, port, user, password, database string) {
 	if err != nil {
 		panic(err.Error())
 	}
-	go func() {
-		for {
-			_, err2 := DB.Conn.Exec("SELECT 1")
-			if err2 != nil {
-				panic(err2.Error())
-			}
-			// sleep for 1 minute
-			<-time.After(1 * time.Minute)
-		}
-	}()
+	go pingMySql()
 	log.Println("connected to database")
+}
+
+// pingMySql pings the database every minute to keep the connection alive
+func pingMySql() {
+	for {
+		_, err := DB.Conn.Exec("SELECT 1")
+		if err != nil {
+			panic(err.Error())
+		}
+		// sleep for 1 minute
+		<-time.After(1 * time.Minute)
+	}
 }
