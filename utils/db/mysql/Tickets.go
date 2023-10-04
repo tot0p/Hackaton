@@ -35,7 +35,7 @@ func GetAllTickets() ([]*model.Ticket, error) {
 	var tickets []*model.Ticket
 	for rows.Next() {
 		tk := model.Ticket{}
-		err := rows.Scan(&tk.UUID, &tk.UserUUID, &tk.Subject, &tk.Content, &tk.Status, &tk.LinkedData, &tk.TchatUUID)
+		err := rows.Scan(&tk.UUID, &tk.UserUUID, &tk.Subject, &tk.Content, &tk.Status, &tk.LinkedData, &tk.CreatedAt, &tk.TchatUUID)
 		if err != nil {
 			return nil, err
 		}
@@ -64,7 +64,7 @@ func GetTicketsByUserUUID(userUUID string) ([]*model.Ticket, error) {
 	var tickets []*model.Ticket
 	for rows.Next() {
 		tk := model.Ticket{}
-		err := rows.Scan(&tk.UUID, &tk.UserUUID, &tk.Subject, &tk.Content, &tk.Status, &tk.LinkedData, &tk.TchatUUID)
+		err := rows.Scan(&tk.UUID, &tk.UserUUID, &tk.Subject, &tk.Content, &tk.Status, &tk.LinkedData, &tk.CreatedAt, &tk.TchatUUID)
 		if err != nil {
 			return nil, err
 		}

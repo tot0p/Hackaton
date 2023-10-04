@@ -24,7 +24,7 @@ func TicketController(ctx *gin.Context) {
 		return
 	}
 
-	if tk.UserUUID == User.UUID || User.Role == model.RoleAdmin {
+	if tk.UserUUID == User.UUID || User.Role != model.RoleUser {
 		ctx.HTML(200, "ticket.html", gin.H{
 			"ticket": tk,
 		})
