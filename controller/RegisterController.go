@@ -25,11 +25,16 @@ func RegisterPostController(ctx *gin.Context) {
 	}
 	Pseudo := ctx.PostForm("pseudo")
 	Password := ctx.PostForm("password")
+	ComfirmPassword := ctx.PostForm("password_confirmation")
 	Email := ctx.PostForm("email")
 	Phone := ctx.PostForm("phone")
 	Role := model.RoleUser
-
-	if Pseudo == "" || Password == "" || Email == "" || Phone == "" {
+	if Password != ComfirmPassword {
+		ctx.HTML(200, "register.html", gin.H{
+			"error": "Password and password confirmation are not the same",
+		})
+		return
+	} else if Pseudo == "" || Password == "" || Email == "" || Phone == "" {
 		ctx.HTML(200, "register.html", gin.H{
 			"error": "Please fill all fields",
 		})
