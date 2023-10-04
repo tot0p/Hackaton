@@ -18,6 +18,7 @@ type Database struct {
 	Conn     *sql.DB
 }
 
+// InitDB initializes the database connection
 func InitDB(host, port, user, password, database string) {
 	if DB != nil {
 		return

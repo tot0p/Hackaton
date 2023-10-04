@@ -7,6 +7,7 @@ import (
 	"hackaton/utils/hash"
 )
 
+// CreateUser creates a new user in the database
 func CreateUser(username, password, email, phone string, role int) (model.User, error) {
 	// check if the username is already taken
 	u, _ := GetUserByUsername(username)
@@ -14,7 +15,7 @@ func CreateUser(username, password, email, phone string, role int) (model.User, 
 		// username already taken
 		return model.User{}, errors.New("username already taken")
 	}
-	// create a UUID
+	// create a uuid
 	userUUID := uuid.New().String()
 	// hash the password
 	hashedPass, err := hash.HashPassword(password)
@@ -37,6 +38,7 @@ func CreateUser(username, password, email, phone string, role int) (model.User, 
 	return newUser, nil
 }
 
+// GetUserByUUID gets a user from the database by uuid
 func GetUserByUUID(uuid string) (model.User, error) {
 	user := model.User{}
 	val := DB.Conn.QueryRow("SELECT * FROM users WHERE uuid = ?", uuid)
@@ -47,6 +49,7 @@ func GetUserByUUID(uuid string) (model.User, error) {
 	return user, nil
 }
 
+// GetUserByUsername gets a user from the database by username
 func GetUserByUsername(username string) (model.User, error) {
 	user := model.User{}
 	val := DB.Conn.QueryRow("SELECT * FROM users WHERE username = ?", username)
@@ -57,6 +60,7 @@ func GetUserByUsername(username string) (model.User, error) {
 	return user, nil
 }
 
+// UpdateUser updates a user in the database
 func UpdateUser(user model.User) error {
 	_, err := DB.Conn.Exec("UPDATE users SET username = ?, password = ?, email = ?, phone = ?, role = ? WHERE uuid = ?", user.Username, user.Password, user.Email, user.Phone, user.Role, user.UUID)
 	if err != nil {
@@ -65,6 +69,7 @@ func UpdateUser(user model.User) error {
 	return nil
 }
 
+// DeleteUser deletes a user from the database
 func DeleteUser(uuid string) error {
 	_, err := DB.Conn.Exec("DELETE FROM users WHERE uuid = ?", uuid)
 	if err != nil {

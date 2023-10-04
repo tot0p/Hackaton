@@ -8,6 +8,7 @@ import (
 	"hackaton/utils/session"
 )
 
+// RegisterController is the controller for the register page
 func RegisterController(ctx *gin.Context) {
 	if session.SessionsManager.IsLogged(ctx) {
 		ctx.Redirect(302, "/")
@@ -16,6 +17,7 @@ func RegisterController(ctx *gin.Context) {
 	ctx.HTML(200, "register.html", nil)
 }
 
+// RegisterPostController is the controller for the register page
 func RegisterPostController(ctx *gin.Context) {
 	if session.SessionsManager.IsLogged(ctx) {
 		ctx.Redirect(302, "/")

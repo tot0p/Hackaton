@@ -66,7 +66,7 @@ func main() {
 	api.GET("/data/:id", controller.DataSetByIdAPIController)
 
 	if *openBrowser {
-		utils.Openbrowser("http://localhost:" + env.Get("PORT"))
+		utils.OpenBrowser("http://localhost:" + env.Get("PORT"))
 	}
 	fmt.Println("Start server on port " + env.Get("PORT") + " ...")
 	if err := r.Run(":" + env.Get("PORT")); err != nil {

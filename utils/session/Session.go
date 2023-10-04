@@ -6,21 +6,26 @@ import (
 	"hackaton/model"
 )
 
+// init initializes the sessions map
 func init() {
-	SessionsManager.Sessions = make(map[string]*Session)
+	SessionsManager.Sessions = make(map[string]*session)
 }
 
+// SessionsManager is the sessions manager
 var SessionsManager sessionsManager
 
+// sessionsManager is the sessions manager
 type sessionsManager struct {
-	Sessions map[string]*Session
+	Sessions map[string]*session
 }
 
-type Session struct {
-	UUID string
-	User *model.User
+// session is a session
+type session struct {
+	uuid string
+	user *model.User
 }
 
+// IsLogged returns true if the user is logged
 func (s *sessionsManager) IsLogged(ctx *gin.Context) bool {
 	cookie, err := ctx.Cookie("session")
 	if err != nil {
@@ -30,6 +35,7 @@ func (s *sessionsManager) IsLogged(ctx *gin.Context) bool {
 	return ok
 }
 
+// GetUser returns the user of the current session and nil if the user is not logged
 func (s *sessionsManager) GetUser(ctx *gin.Context) *model.User {
 	cookie, err := ctx.Cookie("session")
 	if err != nil {
@@ -38,34 +44,34 @@ func (s *sessionsManager) GetUser(ctx *gin.Context) *model.User {
 	return s.Sessions[cookie].GetUser()
 }
 
-func GetSessionByUUID(uuid string) *Session {
-	return SessionsManager.Sessions[uuid]
-}
-
+// CreateSession creates a new session for the given user and set the cookie in the context
 func (s *sessionsManager) CreateSession(ctx *gin.Context, user *model.User) {
-	ses := s.AddSession(user)
+	ses := s.addSession(user)
 	domain := ctx.Request.Host
-	ctx.SetCookie("session", ses.GetUUID(), 3600, "/", domain, false, false)
+	ctx.SetCookie("session", ses.GetUUID(), 36000, "/", domain, false, false)
 }
 
-func (s *sessionsManager) AddSession(user *model.User) *Session {
+func (s *sessionsManager) addSession(user *model.User) *session {
 	u := uuid.New().String()
-	var ses = &Session{
-		UUID: u,
-		User: user,
+	var ses = &session{
+		uuid: u,
+		user: user,
 	}
 	s.Sessions[u] = ses
 	return ses
 }
 
+// RemoveSession removes the session with the given uuid
 func (s *sessionsManager) RemoveSession(uuid string) {
 	delete(s.Sessions, uuid)
 }
 
-func (s *Session) GetUser() *model.User {
-	return s.User
+// GetUser returns the user of the current session
+func (s *session) GetUser() *model.User {
+	return s.user
 }
 
-func (s *Session) GetUUID() string {
-	return s.UUID
+// GetUUID returns the uuid of the current session
+func (s *session) GetUUID() string {
+	return s.uuid
 }

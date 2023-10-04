@@ -12,6 +12,10 @@ func ProfilController(ctx *gin.Context) {
 	}
 
 	User := session.SessionsManager.GetUser(ctx)
+	if User == nil {
+		ctx.Redirect(302, "/login")
+		return
+	}
 	ctx.HTML(200, "profil.html", gin.H{
 		"user": User,
 	})

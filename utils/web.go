@@ -7,8 +7,8 @@ import (
 	"runtime"
 )
 
-// Function to open a web browser using an url
-func Openbrowser(url string) {
+// OpenBrowser Function to open a web browser using an url
+func OpenBrowser(url string) {
 	var err error
 	switch runtime.GOOS {
 	case "linux":
@@ -21,5 +21,4 @@ func Openbrowser(url string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 }

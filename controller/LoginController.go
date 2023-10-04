@@ -32,7 +32,7 @@ func LoginPostController(ctx *gin.Context) {
 	User, err := mysql.GetUserByUsername(Pseudo)
 	if err != nil {
 		ctx.HTML(200, "login.html", gin.H{
-			"error": "User not found",
+			"error": "user not found",
 		})
 		return
 	}
