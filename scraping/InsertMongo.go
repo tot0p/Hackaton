@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/tot0p/env"
 	"hackaton/utils/db/mongodb"
 	"io"
@@ -34,12 +35,21 @@ func main() {
 		panic(err)
 	}
 
+	// Create a channel to limit concurrency to 4 goroutines
+
+	workerLimit := 4
+	workerCh := make(chan struct{}, workerLimit)
+
 	var wg sync.WaitGroup
 
 	for _, name := range allNames {
 		wg.Add(1)
 		go func(name os.DirEntry) {
 			defer wg.Done()
+
+			// Acquire a worker slot
+			workerCh <- struct{}{}
+			defer func() { <-workerCh }()
 
 			DataSetName := name.Name()[:len(name.Name())-5]
 			// Create collections if not exists
@@ -53,21 +63,28 @@ func main() {
 			if err != nil {
 				panic(err)
 			}
+			defer file.Close()
 
 			body, err := io.ReadAll(file)
 			if err != nil {
 				panic(err)
 			}
-
 			var data []interface{}
 
 			err = json.Unmarshal(body, &data)
-
-			_, err = mongodb.DB.InsertMany("DataSets", DataSetName, data)
 			if err != nil {
 				panic(err)
 			}
-			file.Close()
+
+			if len(data) > 0 {
+				_, err = mongodb.DB.InsertMany("DataSets", DataSetName, data)
+				if err != nil {
+					panic(err)
+				}
+				fmt.Println("Inserted", DataSetName)
+			} else {
+				fmt.Println("Empty", DataSetName)
+			}
 		}(name)
 	}
 
