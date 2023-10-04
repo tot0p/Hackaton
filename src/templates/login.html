@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar Example</title>
+    <title>Login</title>
     <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/login.css"/>
+    <link rel="stylesheet" href="../static/css/output.css"/>
 </head>
 <body>
     <nav class="navbar">
@@ -19,5 +21,24 @@
             <button class="nav-btn">Register</button>
         </div>
     </nav>
+    <form action="/login" method="post" class="">
+        <!-- Pseudo -->
+        <div>
+            <label for="pseudo">Username</label>
+            <input type="text" name="pseudo" id="pseudo" placeholder="Username" required>
+        </div>
+        <!-- Password -->
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+        </div>
+        <!-- Submit -->
+        <input type="submit">
+        {{if .error}}
+        <div class="error">
+            {{.error}}
+        </div>
+        {{end}}
+    </form>
 </body>
 </html>

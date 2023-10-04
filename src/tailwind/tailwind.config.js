@@ -8,8 +8,8 @@ module.exports = {
       colors: {
         'background': '#FFFFFF',
         'primary': '#6892D5',
-        'secondary': '#C9FDD7',
-        'tertiary': '#84CAF0',
+        'secondary': '#2A3B57',
+        'tertiary': '#0B84D9',
       },
       fontFamily: {
         'primary': ['IntegralCF'],
