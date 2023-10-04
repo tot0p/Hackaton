@@ -64,9 +64,8 @@ func main() {
 
 	api.GET("/data/names", controller.DataSetNamesAPIController)
 	api.GET("/data/name/:name", controller.DataSetByNameAPIController)
+	api.GET("/data/name/:name/fields", controller.DataSetByNameGetFieldsAPIController)
 	api.GET("/data/name/:name/field/:field/value/:value", controller.DataSetByNameFieldAPIController)
-	api.GET("/data/:id", controller.DataSetByIdAPIController)
-
 	if *openBrowser {
 		utils.OpenBrowser("http://localhost:" + env.Get("PORT"))
 	}

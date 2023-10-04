@@ -75,6 +75,18 @@ func (m *MongoDB) Ping() error {
 	return m.client.Ping(context.Background(), nil)
 }
 
+func (m *MongoDB) GetFields(db, collection string) ([]string, error) {
+	data, err := m.FindOne(db, collection, bson.D{})
+	if err != nil {
+		return nil, err
+	}
+	var fields []string
+	for k := range data {
+		fields = append(fields, k)
+	}
+	return fields, nil
+}
+
 // InsertOne inserts one document into a MongoDB collection
 func (m *MongoDB) InsertOne(db, collection string, document interface{}) (*mongo.InsertOneResult, error) {
 	return m.GetCollection(db, collection).InsertOne(context.Background(), document)
@@ -86,8 +98,13 @@ func (m *MongoDB) InsertMany(db, collection string, documents []interface{}) (*m
 }
 
 // FindOne finds one document in a MongoDB collection
-func (m *MongoDB) FindOne(db, collection string, filter interface{}) *mongo.SingleResult {
-	return m.GetCollection(db, collection).FindOne(context.Background(), filter)
+func (m *MongoDB) FindOne(db, collection string, filter interface{}) (bson.M, error) {
+	var data bson.M
+	err := m.GetCollection(db, collection).FindOne(context.Background(), filter).Decode(&data)
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
 }
 
 // Find finds documents in a MongoDB collection
