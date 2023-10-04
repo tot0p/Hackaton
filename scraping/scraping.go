@@ -9,8 +9,7 @@ import (
 )
 
 var Dataset []struct {
-	ID    string `json:"dataset_id"`
-	Theme string `json:"theme"`
+	ID string `json:"dataset_id"`
 }
 
 // Scraping get all datasets from opendata.paris.fr
@@ -75,15 +74,16 @@ func CreateAllDatasets() {
 		return
 	}
 
-	//Themes := make(map[string][]string)
 	// Create json file for each dataset
-	for _, datasetID := range Dataset {
-		// GET datas from dataset
-		GetDataFromDataset(datasetID.ID)
-		// Create map with theme as key and names as value
-		//Themes[datasetID.Theme] = append(Themes[datasetID.Theme], datasetID.ID)
-	}
-	//CreateJSONTheme(Themes)
+	/*
+		for _, datasetID := range Dataset {
+			// GET datas from dataset
+			GetDataFromDataset(datasetID.ID)
+			// Create map with theme as key and names as value
+		}
+
+	*/
+	CreateJSONTheme()
 }
 
 // GetDataFromDataset get data from dataset api request
@@ -126,14 +126,88 @@ func GetDataFromDataset(name string) {
 	}
 }
 
+type DatasetTheme struct {
+	Name  string `json:"dataset_id"`
+	Metas struct {
+		Default struct {
+			Theme []string `json:"theme"`
+		} `json:"default"`
+	} `json:"metas"`
+}
+
 // CreateJSONTheme create json file which link each dataset to a theme
-func CreateJSONTheme(Themes map[string][]string) {
-	jsonData, err := json.Marshal(Themes)
+func CreateJSONTheme() {
+	var data []DatasetTheme
+
+	body, err := os.ReadFile("scraping/allDatasets.json")
+	if err != nil {
+		panic(err)
+	}
+	err = json.Unmarshal(body, &data)
 	if err != nil {
 		panic(err)
 	}
 
-	err = os.WriteFile("scraping/DatasetsTheme.json", jsonData, 0744)
+	// Clear json file
+	err = os.Truncate("scraping/DatasetsTheme.json", 0)
+	if err != nil {
+		panic(err)
+	}
+
+	// Open json file
+	file, err := os.OpenFile("scraping/DatasetsTheme.json", os.O_CREATE|os.O_WRONLY, 0744)
+	if err != nil {
+		panic(err)
+	}
+
+	// Write data to json file
+	err = json.NewEncoder(file).Encode(data)
+	if err != nil {
+		panic(err)
+	}
+
+	file.Close()
+
+	// Read the JSON file
+	body, err = os.ReadFile("scraping/DatasetsTheme.json")
+
+	// Unmarshal the JSON into an array of struct
+	var dataStruct []DatasetTheme
+	err = json.Unmarshal(body, &dataStruct)
+	if err != nil {
+		panic(err)
+	}
+
+	// Create a map to store themes and associated names
+	themeMap := make(map[string][]string)
+
+	// Iterate through the dataStruct and fill the map
+	for _, item := range dataStruct {
+		datasetID := item.Name
+		themes := item.Metas.Default.Theme
+		for _, theme := range themes {
+			themeMap[theme] = append(themeMap[theme], datasetID)
+		}
+	}
+
+	// Create the final result as a slice of maps
+	var result []map[string]interface{}
+	for theme, datasetIDs := range themeMap {
+		resultItem := map[string]interface{}{
+			"theme": theme,
+			"name":  datasetIDs,
+		}
+		result = append(result, resultItem)
+	}
+
+	// Marshal the result back to JSON
+	body, err = json.Marshal(result)
+	if err != nil {
+		panic(err)
+	}
+
+	// Write json file formatted
+	err = os.WriteFile("scraping/DatasetThemeFormatted.json", body, 0744)
 	if err != nil {
 		panic(err)
 	}
