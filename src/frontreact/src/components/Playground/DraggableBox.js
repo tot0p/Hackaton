@@ -26,7 +26,11 @@ const DraggableBox = ({ id, text, index, data,graphData,fields,loading,loaded,mo
 
     }, []);
 
-
+    useEffect(() => {
+        window.addEventListener('resize', () => {
+            setSelectedGraph('datatable');
+        });
+    }, []);
 
 
     // Define your data visualization components here, you can have multiple
@@ -52,7 +56,8 @@ const DraggableBox = ({ id, text, index, data,graphData,fields,loading,loaded,mo
     const content = loading ? (
         <div className="loader-5 center"><span></span></div>
     ) : (
-        <div>
+        <div className="dashboard_box">
+            <div className="dashboard_title">{text}</div>
             <div className="dashboard_controls">
                 <select value={selectedGraph} onChange={handleChangeGraph}>
                     {Object.keys(graphComponents).map((graph) => (
