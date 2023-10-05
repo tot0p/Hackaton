@@ -2,6 +2,8 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/tot0p/env"
+	"hackaton/utils/db/mongodb"
 	"hackaton/utils/db/mysql"
 	"hackaton/utils/session"
 )
@@ -12,8 +14,20 @@ func NewTicketController(ctx *gin.Context) {
 		ctx.Redirect(302, "/login")
 		return
 	}
+
+	dataSetNames, err := mongodb.DB.GetAllCollectionsNames(env.Get("DB_MONGODB"))
+
+	if err != nil {
+		ctx.HTML(200, "newticket.html", gin.H{
+			"error": "An error occured while fetching the datasets",
+			"user":  User,
+		})
+		return
+	}
+
 	ctx.HTML(200, "newticket.html", gin.H{
-		"user": User,
+		"user":     User,
+		"datasets": dataSetNames,
 	})
 }
 

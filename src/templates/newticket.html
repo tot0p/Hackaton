@@ -25,7 +25,12 @@
         <!-- LinkedData -->
         <div>
             <label for="linkedData" class="label">LinkedData</label>
-            <input type="text" class="text" name="linked_data" id="linkedData" placeholder="LinkedData">
+            <select class="text" name="linked_data" id="linkedData">
+                <option value="">--Please choose an option--</option>
+                {{range .datasets}}
+                    <option value="{{.}}">{{.}}</option>
+                {{end}}
+            </select>
         </div>
         <!-- Submit -->
         <input type="submit">
