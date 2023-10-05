@@ -6,3 +6,8 @@ type Tchat struct {
 	Msg     string `json:"msg"`
 	Channel string `json:"channel"`
 }
+
+type TchatUtilsInfo struct {
+	Msg    string `json:"msg"`
+	Author string `json:"author"`
+}

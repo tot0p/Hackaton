@@ -84,3 +84,25 @@ func UpdateStatusTicket(uuid string, status int) error {
 	}
 	return nil
 }
+
+func TchatToTchatUtilsInfo(tchats []*model.Tchat) []*model.TchatUtilsInfo {
+	var tchatUtilsInfo []*model.TchatUtilsInfo
+
+	var UUIDToName = make(map[string]string)
+
+	for _, tchat := range tchats {
+		if _, ok := UUIDToName[tchat.Author]; !ok {
+			user, err := GetUserByUUID(tchat.Author)
+			if err != nil {
+				continue
+			}
+			UUIDToName[tchat.Author] = user.Username
+		}
+		tchatUtilsInfo = append(tchatUtilsInfo, &model.TchatUtilsInfo{
+			Author: UUIDToName[tchat.Author],
+			Msg:    tchat.Msg,
+		})
+	}
+
+	return tchatUtilsInfo
+}
