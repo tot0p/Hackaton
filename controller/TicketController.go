@@ -24,9 +24,22 @@ func TicketController(ctx *gin.Context) {
 		return
 	}
 
+	tchat := []*model.Tchat{}
+
+	if tk.TchatUUID != "" {
+		tchat, err = mysql.GetTchatByChannel(tk.TchatUUID)
+		if err != nil {
+			ctx.HTML(200, "ticket.html", gin.H{
+				"error": err.Error(),
+			})
+			return
+		}
+	}
+
 	if tk.UserUUID == User.UUID || User.Role != model.RoleUser {
 		ctx.HTML(200, "ticket.html", gin.H{
 			"ticket": tk,
+			"tchat":  tchat,
 		})
 		return
 	}
