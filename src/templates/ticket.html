@@ -2,18 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
+    <link rel="stylesheet" href="../static/css/login.css"/>
+    <link rel="stylesheet" href="../static/css/output.css"/>
 </head>
 <body>
-{{ if .error }}
-<div class="error">
-    {{ .error }}
-</div>
-{{ end }}
-<h1>{{.ticket.Subject}}</h1>
-<p>{{.ticket.Content}}</p>
-<p>{{.ticket.LinkedData}}</p>
-<p>{{.ticket.CreatedAt}}</p>
-<p>{{.ticket.Status}}</p>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a class="nav-btn" href="/">Dataset</a>
+        </div>
+        <div class="nav-center">
+            <a class="nav-btn home-btn" href="/">Home</a>
+        </div>
+        <div class="nav-right">
+            <a class="nav-btn" href="/login">Login</a>
+            <a class="nav-btn" href="/register">Register</a>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    {{ if .error }}
+    <div class="error">
+        {{ .error }}
+    </div>
+    {{ end }}
+    <h1>{{.ticket.Subject}}</h1>
+    <p>{{.ticket.Content}}</p>
+    <p>{{.ticket.LinkedData}}</p>
+    <p>{{.ticket.CreatedAt}}</p>
+    <p>{{.ticket.Status}}</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-left">
+            <img src="../static/media/logo.png" alt="Your Logo" class="logo">
+        </div>
+        <div class="footer-center">
+            <p>&copy; 2023 Your Company Name</p>
+            <p>123 Street Address, City, Country</p>
+        </div>
+        <div class="footer-right">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+    <!-- End Footer -->
 </body>
 </html>
