@@ -67,6 +67,9 @@ func main() {
 	r.GET("/ticket/:uuid", controller.TicketController)
 	r.GET("/tickets", controller.TicketsController)
 
+	//Tchat
+	r.POST("/tchat/:uuidticket", controller.TchatPostController)
+
 	//API Group
 	api := r.Group("/api")
 

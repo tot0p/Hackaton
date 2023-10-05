@@ -15,7 +15,7 @@ func CreateTicket(UserUUID, Subject, Content, LinkedData string) (*model.Ticket,
 		Content:    Content,
 		Status:     model.StatusOpen,
 		LinkedData: LinkedData,
-		TchatUUID:  "",
+		TchatUUID:  uuid.New().String(),
 	}
 
 	// insert the ticket into the database
