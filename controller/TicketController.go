@@ -33,7 +33,7 @@ func TicketController(ctx *gin.Context) {
 		return
 	}
 
-	tchat := []*model.Tchat{}
+	var tchat []*model.Tchat
 
 	if tk.TchatUUID != "" {
 		tchat, err = mysql.GetTchatByChannel(tk.TchatUUID)

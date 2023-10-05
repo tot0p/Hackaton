@@ -66,6 +66,7 @@ func main() {
 	r.POST("/newticket", controller.NewTicketPostController)
 	r.GET("/ticket/:uuid", controller.TicketController)
 	r.GET("/tickets", controller.TicketsController)
+	r.POST("/ticket/:uuid/status", controller.TicketStatusPostController)
 
 	//Tchat
 	r.POST("/tchat/:uuidticket", controller.TchatPostController)
