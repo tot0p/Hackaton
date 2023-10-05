@@ -21,16 +21,22 @@ func TchatPostController(ctx *gin.Context) {
 
 	channel := ctx.PostForm("channel")
 
-	_, err := mysql.CreateTchat(author, msg, channel)
-	if err != nil {
-		ctx.Redirect(302, "/")
+	if channel == "" {
+		ctx.Redirect(302, "/ticket/"+uuidTchat+"?error=Channel vide")
 		return
 	}
 
-	if uuidTchat != "" {
-		ctx.Redirect(302, "/ticket/"+uuidTchat)
-	} else {
-		ctx.Redirect(302, "/")
+	if msg == "" {
+		ctx.Redirect(302, "/ticket/"+uuidTchat+"?error=Message vide")
+		return
 	}
+
+	_, err := mysql.CreateTchat(author, msg, channel)
+	if err != nil {
+		ctx.Redirect(302, "/ticket/"+uuidTchat+"?error="+err.Error())
+		return
+	}
+
+	ctx.Redirect(302, "/ticket/"+uuidTchat)
 
 }
