@@ -15,7 +15,11 @@
         <p class="status">{{.ticket.Status}}</p>
 
         <div class="chat-section">
-            <div id="messages"></div>
+            {{range .tchat}}
+                <div id="messages">{{.Msg}} de {{.Author}}</div>
+            {{end}}
+
+
             <form id="messageForm" action="/tchat/{{.ticket.UUID}}" method="POST">
                 <textarea id="messageInput" name="msg" placeholder="Répond ici bg"></textarea>
                 <input style="display: none" name="channel" value="{{.ticket.TchatUUID}}"/>

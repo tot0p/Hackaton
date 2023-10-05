@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"hackaton/model"
 	"hackaton/utils/db/mysql"
@@ -38,10 +39,16 @@ func TicketController(ctx *gin.Context) {
 		}
 	}
 
+	tchatSorted := mysql.TchatToCompleteTchat(tchat)
+
+	fmt.Println(tchat)
+
+	fmt.Println(tchatSorted)
+
 	if tk.UserUUID == User.UUID || User.Role != model.RoleUser {
 		ctx.HTML(200, "ticket.html", gin.H{
 			"ticket": tk,
-			"tchat":  tchat,
+			"tchat":  tchatSorted,
 			"user":   User,
 		})
 		return

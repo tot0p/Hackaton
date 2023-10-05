@@ -7,3 +7,8 @@ type Tchat struct {
 	Channel string `json:"channel"`
 	ReplyOf string `json:"reply_of"`
 }
+
+type CompleteTchat struct {
+	Author string `json:"author"`
+	Msg    string `json:"msg"`
+}
