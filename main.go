@@ -54,6 +54,9 @@ func main() {
 	r.GET("/login", controller.LoginController)
 	r.POST("/login", controller.LoginPostController)
 
+	//Logout
+	r.GET("/logout", controller.LogoutController)
+
 	//Register
 	r.GET("/register", controller.RegisterController)
 	r.POST("/register", controller.RegisterPostController)

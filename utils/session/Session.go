@@ -25,6 +25,16 @@ type session struct {
 	user *model.User
 }
 
+func (s *sessionsManager) DeleteSession(ctx *gin.Context) {
+	cookie, err := ctx.Cookie("session")
+	if err != nil {
+		return
+	}
+	s.RemoveSession(cookie)
+	domain := ctx.Request.Host
+	ctx.SetCookie("session", "", -1, "/", domain, false, false)
+}
+
 // IsLogged returns true if the user is logged
 func (s *sessionsManager) IsLogged(ctx *gin.Context) bool {
 	cookie, err := ctx.Cookie("session")
