@@ -1,5 +1,5 @@
 // Dashboard.js
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import DraggableBox from './DraggableBox';
 import AddBoxModal from './AddBoxModal';
 import './Dashboard.css';
@@ -8,6 +8,7 @@ import axios from "axios";
 
 const Dashboard = () => {
     const [boxes, setBoxes] = useState([]);
+    const [update,updateBoxes] = useState(true);
     const [boxCount, setBoxCount] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -39,6 +40,13 @@ const Dashboard = () => {
         const updatedBoxes = boxes.filter((box) => box.id !== id);
         setBoxes(updatedBoxes);
     };
+    useEffect(() => {
+        console.log(boxes);
+    }, [boxes]);
+
+    useEffect(() => {
+        updateBoxes(false);
+    }, [update]);
 
     const handleLoadBoxData = (id) => {
         // fetch data for the box with the given id
@@ -47,7 +55,7 @@ const Dashboard = () => {
         box.loading = true;
         console.log("DataSources: " + DataSources);
         // update the boxes state
-        setBoxes([...boxes]);
+        setBoxes([...boxes])
         fetchData(DataSources).then((data) => {
             // get the box with the given id
             const box = boxes.find((box) => box.id === id);
@@ -60,18 +68,14 @@ const Dashboard = () => {
                 box.fields = fields;
                 box.loading = false;
                 box.loaded = true;
-                // update the boxes state
+                updateBoxes(true);
                 console.log(boxes);
-                updateBoxData();
                 console.log("End of " + DataSources);
                 console.log(boxes);
             });
         });
     }
 
-    const updateBoxData = () => {
-        setBoxes([...boxes])
-    }
 
     const moveBox = (fromIndex, toIndex) => {
         const updatedBoxes = [...boxes];

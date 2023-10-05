@@ -15,7 +15,14 @@ const DataTableComponent = ({ keys,data }) => {
         <DataTable
             columns={columns}
             data={data}
+            direction="auto"
             pagination
+            fixedHeader
+            fixedHeaderScrollHeight="500px"
+            highlightOnHover
+            responsive
+            subHeaderAlign="right"
+            subHeaderWrap
         />
     );
 };
