@@ -41,7 +41,6 @@ const Dashboard = () => {
         setBoxes(updatedBoxes);
     };
     useEffect(() => {
-        console.log(boxes);
     }, [boxes]);
 
     useEffect(() => {
@@ -53,7 +52,6 @@ const Dashboard = () => {
         const box = boxes.find((box) => box.id === id);
         const DataSources = box.text;
         box.loading = true;
-        console.log("DataSources: " + DataSources);
         // update the boxes state
         setBoxes([...boxes])
         fetchData(DataSources).then((data) => {
@@ -66,12 +64,16 @@ const Dashboard = () => {
                 const box = boxes.find((box) => box.id === id);
                 // update the box with the data fields
                 box.fields = fields;
-                box.loading = false;
-                box.loaded = true;
-                updateBoxes(true);
-                console.log(boxes);
-                console.log("End of " + DataSources);
-                console.log(boxes);
+                fetchGraphData(DataSources).then((graphData) => {
+                    // get the box with the given id
+                    const box = boxes.find((box) => box.id === id);
+                    // update the box with the data fields
+                    box.graphData = graphData["graphs"]
+                    box.loading = false;
+                    box.loaded = true;
+                    // update the boxes state
+                    setBoxes([...boxes]);
+                });
             });
         });
     }
@@ -97,6 +99,7 @@ const Dashboard = () => {
                     text={box.text}
                     index={index}
                     data={box.data}
+                    graphData={box.graphData}
                     fields={box.fields}
                     loading={box.loading}
                     loaded={box.loaded}
@@ -127,6 +130,15 @@ const fetchDataFields = async (name) => {
 const fetchData = async (name) => {
     try {
         const response = await axios.get("http://localhost:8080/api/data/name/" + name);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data sources:", error);
+        return [];
+    }
+}
+const fetchGraphData = async (name) => {
+    try {
+        const response = await axios.get("http://localhost:8080/api/graph/"+name);
         return response.data;
     } catch (error) {
         console.error("Error fetching data sources:", error);
