@@ -1,6 +1,6 @@
 .format {
     border: 1px solid #ccc;
-    padding: 60px 40px 60px 40px;
+    padding: 40px 40px 60px 40px;
     background-color: #6892D5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
@@ -32,4 +32,10 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #2A3B57;
+}
+
+.account {
+    display: block;
+    margin-top: 16px;
+    text-align: center;
 }
