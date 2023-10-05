@@ -13,7 +13,7 @@ func CreateTchat(UserUUID, Msg, Channel string) (*model.Tchat, error) {
 	val := DB.Conn.QueryRow("SELECT uuid FROM tchat WHERE channel = ? ORDER BY uuid DESC LIMIT 1", Channel)
 	err := val.Scan(&ReplyOf)
 	if err != nil {
-		return nil, err
+		ReplyOf = ""
 	}
 
 	tk := model.Tchat{
@@ -25,7 +25,7 @@ func CreateTchat(UserUUID, Msg, Channel string) (*model.Tchat, error) {
 	}
 
 	// insert the ticket into the database
-	_, err = DB.Conn.Exec("INSERT INTO tchat (uuid,author, msg, reply_of) VALUES (?,?, ?, ?)", tk.UUID, tk.Author, tk.Msg, tk.ReplyOf)
+	_, err = DB.Conn.Exec("INSERT INTO tchat (uuid,author, msg, reply_of , channel) VALUES (?,?, ?, ?, ?)", tk.UUID, tk.Author, tk.Msg, tk.ReplyOf, tk.Channel)
 	if err != nil {
 		return nil, err
 	}
