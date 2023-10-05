@@ -1,8 +1,6 @@
 package mysql
 
 import (
-	"fmt"
-	"github.com/google/uuid"
 	"hackaton/model"
 )
 
@@ -18,15 +16,14 @@ func CreateTchat(UserUUID, Msg, Channel string) (*model.Tchat, error) {
 	}
 
 	tk := model.Tchat{
-		UUID:    uuid.New().String(),
+
 		Author:  UserUUID,
 		Msg:     Msg,
-		ReplyOf: ReplyOf,
 		Channel: Channel,
 	}
 
 	// insert the ticket into the database
-	_, err = DB.Conn.Exec("INSERT INTO tchat (uuid,author, msg, reply_of , channel) VALUES (?,?, ?, ?, ?)", tk.UUID, tk.Author, tk.Msg, tk.ReplyOf, tk.Channel)
+	_, err = DB.Conn.Exec("INSERT INTO tchat (author, msg, channel) VALUES (?,?,  ?)", tk.Author, tk.Msg, tk.Channel)
 	if err != nil {
 		return nil, err
 	}
@@ -43,54 +40,11 @@ func GetTchatByChannel(Channel string) ([]*model.Tchat, error) {
 	var tchats []*model.Tchat
 	for rows.Next() {
 		tk := model.Tchat{}
-		err := rows.Scan(&tk.UUID, &tk.Author, &tk.Msg, &tk.Channel, &tk.ReplyOf)
+		err := rows.Scan(&tk.ID, &tk.Author, &tk.Msg, &tk.Channel)
 		if err != nil {
 			return nil, err
 		}
 		tchats = append(tchats, &tk)
 	}
 	return tchats, nil
-}
-
-func TchatToCompleteTchat(tchat []*model.Tchat) []*model.CompleteTchat {
-	var completeTchat []*model.CompleteTchat
-
-	var UUIDAuthorToName = make(map[string]string)
-
-	for _, t := range tchat {
-		if _, ok := UUIDAuthorToName[t.Author]; !ok {
-			u, err := GetUserByUUID(t.Author)
-			if err != nil {
-				continue
-			}
-			UUIDAuthorToName[t.Author] = u.Username
-		}
-	}
-
-	// sort tchat by ReplyOf
-	var tchatSorted []*model.Tchat
-	for _, t := range tchat {
-		fmt.Println(tchatSorted)
-		if t.ReplyOf == "" {
-			tchatSorted = append([]*model.Tchat{t}, tchatSorted[1:]...)
-		} else {
-			for i, t2 := range tchatSorted {
-				if t2.UUID == t.ReplyOf {
-					tchatSorted = append(tchatSorted[:i], append([]*model.Tchat{t}, tchatSorted[i:]...)...)
-					break
-				}
-			}
-		}
-	}
-
-	fmt.Println(tchatSorted)
-
-	for _, t := range tchatSorted {
-		completeTchat = append(completeTchat, &model.CompleteTchat{
-			Author: UUIDAuthorToName[t.Author],
-			Msg:    t.Msg,
-		})
-	}
-
-	return completeTchat
 }
