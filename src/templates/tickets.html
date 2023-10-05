@@ -6,35 +6,38 @@
     <title>Tickets</title>
     <link rel="stylesheet" href="../static/css/login.css"/>
     <link rel="stylesheet" href="../static/css/output.css"/>
+    <link rel="stylesheet" href="../static/css/tickets.css"/>
 </head>
 <body>
     <!-- Navbar -->
     {{ template "navbar.html" . }}
     <!-- End Navbar -->
-    <table>
-        <thead>
-        <tr>
-            <th>UUID</th>
-            <th>Subject</th>
-            <th>Content</th>
-            <th>Status</th>
-            <th>Created at</th>
-            <th>Linked Data</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{range .tickets}}
-        <tr>
-            <td>{{ .UUID }}</td>
-            <td>{{ .Subject }}</td>
-            <td>{{ .Content }}</td>
-            <td> {{ .Status }}</td>
-            <td>{{ .CreatedAt }}</td>
-            <td>{{ .LinkedData }}</td>
-        </tr>
-        {{end}}
-        </tbody>
-    </table>
+    <div class="table-container">
+        <table class="table">
+            <thead>
+            <tr class="th">
+                <th>UUID</th>
+                <th>Subject</th>
+                <th>Content</th>
+                <th>Status</th>
+                <th>Created at</th>
+                <th>Linked Data</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range .tickets}}
+            <tr class="td">
+                <td><a href="/ticket/{{ .UUID }}">{{ .UUID }}</a></td>
+                <td>{{ .Subject }}</td>
+                <td class="content">{{ .Content }}</td>
+                <td>{{ .Status }}</td>
+                <td>{{ .CreatedAt }}</td>
+                <td>{{ .LinkedData }}</td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
 
     {{ if .error }}
     <div class="error">
