@@ -40,3 +40,23 @@ body {
     display: flex;
     align-items: center;
 }
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .nav-left,
+    .nav-center,
+    .nav-right {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .nav-btn {
+        display: block;
+        margin: 5px 0;
+    }
+}
