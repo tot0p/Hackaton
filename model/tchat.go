@@ -1,5 +1,6 @@
 package model
 
+// Tchat struct
 type Tchat struct {
 	ID      string `json:"id"`
 	Author  string `json:"author"`
@@ -7,6 +8,7 @@ type Tchat struct {
 	Channel string `json:"channel"`
 }
 
+// TchatUtilsInfo struct
 type TchatUtilsInfo struct {
 	Msg    string `json:"msg"`
 	Author string `json:"author"`

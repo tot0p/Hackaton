@@ -14,6 +14,7 @@ import (
 var openBrowser *bool = new(bool)
 
 func init() {
+	// Load env file
 	err := env.Load()
 	if err != nil {
 		panic(err)
@@ -25,6 +26,8 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+
+	//Release mode
 	//gin.SetMode(gin.ReleaseMode)
 
 	// Open browser flag
@@ -36,15 +39,11 @@ func init() {
 
 func main() {
 	r := gin.Default()
+	// Load templates
 	r.LoadHTMLGlob("src/templates/*")
 
+	// Serve static files
 	r.Static("/static", "./src/static")
-
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
 
 	// Index
 	r.GET("/", controller.IndexController)

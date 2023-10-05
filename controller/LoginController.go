@@ -6,6 +6,7 @@ import (
 	"hackaton/utils/session"
 )
 
+// LoginController handles the GET request to login
 func LoginController(ctx *gin.Context) {
 	if session.SessionsManager.IsLogged(ctx) {
 		ctx.Redirect(302, "/")
@@ -14,6 +15,7 @@ func LoginController(ctx *gin.Context) {
 	ctx.HTML(200, "login.html", nil)
 }
 
+// LoginPostController handles the POST request to login
 func LoginPostController(ctx *gin.Context) {
 	if session.SessionsManager.IsLogged(ctx) {
 		ctx.Redirect(302, "/")

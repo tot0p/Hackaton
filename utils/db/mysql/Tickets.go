@@ -74,6 +74,7 @@ func GetTicketsByUserUUID(userUUID string) ([]*model.Ticket, error) {
 	return tickets, nil
 }
 
+// UpdateTicket updates a ticket in the database
 func UpdateStatusTicket(uuid string, status int) error {
 	if status > model.StatusClosed || status < model.StatusOpen {
 		return errors.New("invalid status")
@@ -85,6 +86,7 @@ func UpdateStatusTicket(uuid string, status int) error {
 	return nil
 }
 
+// TchatToTchatUtilsInfo converts a slice of tchat to a slice of tchat utils info (author name instead of author uuid)
 func TchatToTchatUtilsInfo(tchats []*model.Tchat) []*model.TchatUtilsInfo {
 	var tchatUtilsInfo []*model.TchatUtilsInfo
 

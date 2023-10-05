@@ -8,6 +8,7 @@ import (
 
 const filePathGraph = "src/data/graph.json"
 
+// GraphAPIController handles the GET request to get the graph
 func GraphAPIController(ctx *gin.Context) {
 	jsonData, err := os.ReadFile(filePathGraph)
 	if err != nil {

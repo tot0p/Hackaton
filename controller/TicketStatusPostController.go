@@ -6,6 +6,7 @@ import (
 	"strconv"
 )
 
+// TicketStatusPostController handles the POST request to change the status of a ticket
 func TicketStatusPostController(ctx *gin.Context) {
 	uuid := ctx.Param("uuid")
 	status := ctx.PostForm("status")

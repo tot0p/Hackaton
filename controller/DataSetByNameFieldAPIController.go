@@ -7,6 +7,7 @@ import (
 	"hackaton/utils/db/mongodb"
 )
 
+// DataSetByNameFiltersAPIController handles the GET request to get the data of a dataset by name and filters
 func DataSetByNameFieldAPIController(ctx *gin.Context) {
 	name := ctx.Param("name")
 	field := ctx.Param("field")

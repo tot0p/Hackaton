@@ -8,6 +8,7 @@ import (
 
 const filePathCategory = "src/data/category.json"
 
+// DataSetCategoriesAPIController handles the GET request to get the graph
 func DataSetCategoriesAPIController(ctx *gin.Context) {
 	jsonData, err := os.ReadFile(filePathCategory)
 	if err != nil {

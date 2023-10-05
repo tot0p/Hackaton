@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// GraphByNameAPIController handles the GET request to get the graph by name
 func GraphByNameAPIController(ctx *gin.Context) {
 
 	jsonData, err := os.ReadFile(filePathGraph)

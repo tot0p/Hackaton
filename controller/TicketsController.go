@@ -7,6 +7,7 @@ import (
 	"hackaton/utils/session"
 )
 
+// TicketsController handles the GET request to get the tickets
 func TicketsController(ctx *gin.Context) {
 	User := session.SessionsManager.GetUser(ctx)
 	if User == nil {

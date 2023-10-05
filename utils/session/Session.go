@@ -25,6 +25,7 @@ type session struct {
 	user *model.User
 }
 
+// DeleteSession deletes the current session
 func (s *sessionsManager) DeleteSession(ctx *gin.Context) {
 	cookie, err := ctx.Cookie("session")
 	if err != nil {
@@ -65,6 +66,7 @@ func (s *sessionsManager) CreateSession(ctx *gin.Context, user *model.User) {
 	ctx.SetCookie("session", ses.GetUUID(), 36000, "/", domain, false, false)
 }
 
+// addSession adds a new session for the given user
 func (s *sessionsManager) addSession(user *model.User) *session {
 	u := uuid.New().String()
 	var ses = &session{

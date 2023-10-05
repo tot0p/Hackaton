@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// DataSetByCategoryAPIController handles the GET request to get the graph by name
 func DataSetByCategoryAPIController(ctx *gin.Context) {
 	jsonData, err := os.ReadFile(filePathCategory)
 	if err != nil {

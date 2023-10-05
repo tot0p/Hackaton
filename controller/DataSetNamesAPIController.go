@@ -6,6 +6,7 @@ import (
 	"hackaton/utils/db/mongodb"
 )
 
+// DataSetNamesAPIController handles the GET request to get the list of all datasets names
 func DataSetNamesAPIController(ctx *gin.Context) {
 	names, err := mongodb.DB.GetAllCollectionsNames(env.Get("DB_MONGODB"))
 	if err != nil {

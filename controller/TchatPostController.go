@@ -6,6 +6,7 @@ import (
 	"hackaton/utils/session"
 )
 
+// TchatPostController handles the POST request to send a message in a ticket
 func TchatPostController(ctx *gin.Context) {
 	User := session.SessionsManager.GetUser(ctx)
 	if User == nil {

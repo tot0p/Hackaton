@@ -4,34 +4,29 @@ import (
 	"hackaton/model"
 )
 
+// CreateTchat creates a new ticket in the database
 func CreateTchat(UserUUID, Msg, Channel string) (*model.Tchat, error) {
-
 	ReplyOf := ""
-
 	// Get uuid of the last message of the channel
 	val := DB.Conn.QueryRow("SELECT uuid FROM tchat WHERE channel = ? ORDER BY uuid DESC LIMIT 1", Channel)
 	err := val.Scan(&ReplyOf)
 	if err != nil {
 		ReplyOf = ""
 	}
-
 	tk := model.Tchat{
-
 		Author:  UserUUID,
 		Msg:     Msg,
 		Channel: Channel,
 	}
-
 	// insert the ticket into the database
 	_, err = DB.Conn.Exec("INSERT INTO tchat (author, msg, channel) VALUES (?,?,  ?)", tk.Author, tk.Msg, tk.Channel)
 	if err != nil {
 		return nil, err
 	}
-
 	return &tk, nil
-
 }
 
+// GetTchatByChannel gets all tickets from the database by user uuid
 func GetTchatByChannel(Channel string) ([]*model.Tchat, error) {
 	rows, err := DB.Conn.Query("SELECT * FROM tchat WHERE channel = ?", Channel)
 	if err != nil {

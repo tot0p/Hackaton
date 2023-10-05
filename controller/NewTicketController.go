@@ -8,6 +8,7 @@ import (
 	"hackaton/utils/session"
 )
 
+// NewTicketController handles the GET request to get the new ticket page
 func NewTicketController(ctx *gin.Context) {
 	User := session.SessionsManager.GetUser(ctx)
 	if User == nil {
@@ -31,6 +32,7 @@ func NewTicketController(ctx *gin.Context) {
 	})
 }
 
+// NewTicketPostController handles the POST request to create a new ticket
 func NewTicketPostController(ctx *gin.Context) {
 	User := session.SessionsManager.GetUser(ctx)
 	if User == nil {

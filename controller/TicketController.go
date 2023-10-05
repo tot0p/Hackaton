@@ -7,15 +7,14 @@ import (
 	"hackaton/utils/session"
 )
 
+// TicketController handles the GET request to get a ticket
 func TicketController(ctx *gin.Context) {
 	User := session.SessionsManager.GetUser(ctx)
 	if User == nil {
 		ctx.Redirect(302, "/login")
 		return
 	}
-
 	uuid := ctx.Param("uuid")
-
 	tk, err := mysql.GetTicketByUUID(uuid)
 	if err != nil {
 		ctx.HTML(200, "ticket.html", gin.H{
@@ -24,7 +23,6 @@ func TicketController(ctx *gin.Context) {
 		})
 		return
 	}
-
 	if tk.UUID == "" {
 		ctx.HTML(200, "ticket.html", gin.H{
 			"error": "Ticket not found",
@@ -32,9 +30,7 @@ func TicketController(ctx *gin.Context) {
 		})
 		return
 	}
-
 	var tchat []*model.Tchat
-
 	if tk.TchatUUID != "" {
 		tchat, err = mysql.GetTchatByChannel(tk.TchatUUID)
 		if err != nil {
@@ -45,9 +41,7 @@ func TicketController(ctx *gin.Context) {
 			return
 		}
 	}
-
 	tchatUtils := mysql.TchatToTchatUtilsInfo(tchat)
-
 	if tk.UserUUID == User.UUID || User.Role != model.RoleUser {
 		ctx.HTML(200, "ticket.html", gin.H{
 			"ticket": tk,

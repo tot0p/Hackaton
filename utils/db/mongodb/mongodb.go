@@ -79,6 +79,7 @@ func (m *MongoDB) Ping() error {
 	return m.client.Ping(context.Background(), nil)
 }
 
+// GetFields returns the fields of a MongoDB collection
 func (m *MongoDB) GetFields(db, collection string, _id, _mulfields bool) ([]string, error) {
 	data, err := m.FindOne(db, collection, bson.D{})
 	if err != nil {

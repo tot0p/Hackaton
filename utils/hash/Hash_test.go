@@ -2,6 +2,9 @@ package hash
 
 import "testing"
 
+//Unit tests
+
+// TestHashPassword Function to test HashPassword
 func TestHashPassword(t *testing.T) {
 
 	s := "password"
@@ -16,6 +19,7 @@ func TestHashPassword(t *testing.T) {
 	}
 }
 
+// TestCheckPassword Function to test CheckPassword
 func TestCheckPassword(t *testing.T) {
 
 	s := "password"

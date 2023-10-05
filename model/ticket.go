@@ -6,6 +6,7 @@ const (
 	StatusInProgress
 )
 
+// Ticket struct
 type Ticket struct {
 	UUID       string `json:"uuid"`
 	UserUUID   string `json:"user_uuid"`
