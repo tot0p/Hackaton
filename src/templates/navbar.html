@@ -16,7 +16,9 @@
         </div>
         <div class="nav-right">
             {{ if .user }}
-            <a class="nav-btn" href="/profil">Profile</a>
+            {{ if ne .user.Role 2 }}
+            <a class="nav-btn" href="/tickets">Tickets</a>
+            {{ end }}
             <a class="nav-btn" href="/logout">Logout</a>
             {{ else }}
             <a class="nav-btn" href="/login">Login</a>
