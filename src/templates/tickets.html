@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tickets</title>
-    <link rel="stylesheet" href="../static/css/navbar.css">
-    <link rel="stylesheet" href="../static/css/footer.css">
     <link rel="stylesheet" href="../static/css/login.css"/>
     <link rel="stylesheet" href="../static/css/output.css"/>
 </head>
@@ -13,18 +11,37 @@
     <!-- Navbar -->
     {{ template "navbar.html" . }}
     <!-- End Navbar -->
+    <table>
+        <thead>
+        <tr>
+            <th>UUID</th>
+            <th>Subject</th>
+            <th>Content</th>
+            <th>Status</th>
+            <th>Created at</th>
+            <th>Linked Data</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range .tickets}}
+        <tr>
+            <td>{{ .UUID }}</td>
+            <td>{{ .Subject }}</td>
+            <td>{{ .Content }}</td>
+            <td> {{ .Status }}</td>
+            <td>{{ .CreatedAt }}</td>
+            <td>{{ .LinkedData }}</td>
+        </tr>
+        {{end}}
+        </tbody>
+    </table>
+
     {{ if .error }}
     <div class="error">
         {{ .error }}
     </div>
     {{ end }}
 
-    {{range .tickets}}
-        <div>
-            <a href="/ticket/{{.UUID}}">Ticket {{.UUID}}</a>
-        </div>
-        <li>{{.Subject}} , {{.Content}}</li>
-    {{end}}
     <!-- Footer -->
     {{ template "footer.html" . }}
     <!-- End Footer -->
