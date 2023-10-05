@@ -17,7 +17,8 @@
         <div class="chat-section">
             <div id="messages"></div>
             <form id="messageForm" action="/tchat/{{.ticket.UUID}}" method="POST">
-                <textarea id="messageInput" name="message" placeholder="Répond ici bg"></textarea>
+                <textarea id="messageInput" name="msg" placeholder="Répond ici bg"></textarea>
+                <input style="display: none" name="channel" value="{{.ticket.TchatUUID}}"/>
                 <button type="submit">Envoyer</button>
             </form>
         </div>
