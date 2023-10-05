@@ -7,11 +7,14 @@ import (
 )
 
 func NewTicketController(ctx *gin.Context) {
-	if !session.SessionsManager.IsLogged(ctx) {
-		ctx.Redirect(302, "/")
+	User := session.SessionsManager.GetUser(ctx)
+	if User == nil {
+		ctx.Redirect(302, "/login")
 		return
 	}
-	ctx.HTML(200, "newticket.html", nil)
+	ctx.HTML(200, "newticket.html", gin.H{
+		"user": User,
+	})
 }
 
 func NewTicketPostController(ctx *gin.Context) {
