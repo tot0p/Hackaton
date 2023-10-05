@@ -22,11 +22,13 @@ func TicketsController(ctx *gin.Context) {
 	if err != nil {
 		ctx.HTML(200, "tickets.html", gin.H{
 			"error": err.Error(),
+			"user":  User,
 		})
 		return
 	}
 
 	ctx.HTML(200, "tickets.html", gin.H{
 		"tickets": tickets,
+		"user":    User,
 	})
 }
