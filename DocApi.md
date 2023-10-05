@@ -127,3 +127,18 @@ si erreur:
   "error": "message d'erreur"
 }
 ```
+
+## /api/graph/{name} GET
+
+Donnes le type de graph du dataset {name}
+
+si erreur:
+```json
+{
+  "error": "message d'erreur"
+}
+```
+
+## /api/graph GET
+
+Donnes les types de graph des datasets

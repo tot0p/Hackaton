@@ -1,0 +1,15 @@
+{
+  "donnees-annuelles": {
+    "graphs": [
+      {
+        "type": "Line",
+        "xAxis": "annee",
+        "series": [
+          "itineraires_cyclables",
+          "subvention_professionnels",
+          "subvention_vae_particuliers"
+        ]
+      }
+    ]
+  }
+}

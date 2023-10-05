@@ -84,8 +84,9 @@ func main() {
 	api.GET("/data/name/:name/filters", controller.DataSetByNameFiltersAPIController)
 	api.GET("/data/name/:name/field/:field/value/:value", controller.DataSetByNameFieldAPIController)
 
-	// Tickets
-	//api.Get("/tickets", controller.TicketsController)
+	// Graph
+	api.GET("/graph", controller.GraphAPIController)
+	api.GET("/graph/:name", controller.GraphByNameAPIController)
 
 	// Open browser if flag is true
 	if *openBrowser {

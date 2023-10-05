@@ -6,15 +6,16 @@ import (
 	"os"
 )
 
-func DataSetByCategoryAPIController(ctx *gin.Context) {
-	jsonData, err := os.ReadFile(filePathCategory)
+func GraphByNameAPIController(ctx *gin.Context) {
+
+	jsonData, err := os.ReadFile(filePathGraph)
 	if err != nil {
 		ctx.JSON(500, gin.H{
 			"error": err.Error(),
 		})
 		return
 	}
-	var data []map[string]interface{}
+	var data map[string]interface{}
 	err = json.Unmarshal(jsonData, &data)
 	if err != nil {
 		ctx.JSON(500, gin.H{
@@ -23,11 +24,9 @@ func DataSetByCategoryAPIController(ctx *gin.Context) {
 		return
 	}
 
-	for _, v := range data {
-		if v["theme"] == ctx.Param("category") {
-			ctx.JSON(200, v)
-			return
-		}
+	if d, ok := data[ctx.Param("name")]; ok {
+		ctx.JSON(200, d)
+		return
 	}
 
 	ctx.JSON(404, gin.H{

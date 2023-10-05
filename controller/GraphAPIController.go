@@ -6,17 +6,17 @@ import (
 	"os"
 )
 
-const filePathCategory = "src/data/category.json"
+const filePathGraph = "src/data/graph.json"
 
-func DataSetCategoriesAPIController(ctx *gin.Context) {
-	jsonData, err := os.ReadFile(filePathCategory)
+func GraphAPIController(ctx *gin.Context) {
+	jsonData, err := os.ReadFile(filePathGraph)
 	if err != nil {
 		ctx.JSON(500, gin.H{
 			"error": err.Error(),
 		})
 		return
 	}
-	var data []map[string]interface{}
+	var data map[string]interface{}
 	err = json.Unmarshal(jsonData, &data)
 	if err != nil {
 		ctx.JSON(500, gin.H{
@@ -25,5 +25,4 @@ func DataSetCategoriesAPIController(ctx *gin.Context) {
 		return
 	}
 	ctx.JSON(200, data)
-
 }
