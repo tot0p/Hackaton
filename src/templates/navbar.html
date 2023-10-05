@@ -15,8 +15,13 @@
             <a class="nav-btn home-btn" href="/">Home</a>
         </div>
         <div class="nav-right">
+            {{ if .user }}
+            <a class="nav-btn" href="/profil">Profile</a>
+            <a class="nav-btn" href="/logout">Logout</a>
+            {{ else }}
             <a class="nav-btn" href="/login">Login</a>
             <a class="nav-btn" href="/register">Register</a>
+            {{ end }}
         </div>
     </nav>
 </body>
