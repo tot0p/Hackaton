@@ -16,6 +16,7 @@ const DataTableComponent = ({ keys,data }) => {
             columns={columns}
             data={data}
             direction="auto"
+            dense
             pagination
             fixedHeader
             fixedHeaderScrollHeight="500px"

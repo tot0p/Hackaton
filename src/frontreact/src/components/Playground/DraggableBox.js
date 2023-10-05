@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import DataTableComponent from "../DataTable/DataTable";
+import "./loader2.css";
+import LineGraph from "../LineGraph/LineGraph";
 
-const DraggableBox = ({ id, text, index, data,fields,loading,loaded,moveBox, onDelete ,onLoadData}) => {
+const DraggableBox = ({ id, text, index, data,graphData,fields,loading,loaded,moveBox, onDelete ,onLoadData}) => {
     const [selectedGraph, setSelectedGraph] = useState('datatable'); // Initial selected graph
     const [,drag] = useDrag({
         type: 'BOX',
@@ -24,6 +26,11 @@ const DraggableBox = ({ id, text, index, data,fields,loading,loaded,moveBox, onD
 
     }, []);
 
+    useEffect(() => {
+        window.addEventListener('resize', () => {
+            setSelectedGraph('datatable');
+        });
+    }, []);
 
 
     // Define your data visualization components here, you can have multiple
@@ -31,18 +38,33 @@ const DraggableBox = ({ id, text, index, data,fields,loading,loaded,moveBox, onD
     const graphComponents = {
         datatable: <DataTableComponent keys={fields} data={data} />,
     };
+    if (loaded && graphData !== undefined) {
+        if (graphData.length > 0) {
+            graphData.forEach((graph) => {
+                if (graph.type === "Line") {
+                    graphComponents[graph.type] =
+                        <LineGraph data={data} xAxisField={graph.xAxis} SeriesField={graph.series}/>;
+                }
+            });
+        }
+    }
 
     const handleChangeGraph = (event) => {
         setSelectedGraph(event.target.value);
     };
 
     const content = loading ? (
-        <p>Loading data...</p>
+        <div className="loader-5 center"><span></span></div>
     ) : (
-        <div>
+        <div className="dashboard_box">
+            <div className="dashboard_title">{text}</div>
             <div className="dashboard_controls">
                 <select value={selectedGraph} onChange={handleChangeGraph}>
-                    <option value="datatable">Data Table</option>
+                    {Object.keys(graphComponents).map((graph) => (
+                        <option key={graph} value={graph}>
+                            {graph}
+                        </option>
+                    ))}
                 </select>
                 <button onClick={() => onDelete(id)} className="dashboard_delete-button">
                     X
