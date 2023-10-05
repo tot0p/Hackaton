@@ -1,6 +1,7 @@
 package mysql
 
 import (
+	"errors"
 	"github.com/google/uuid"
 	"hackaton/model"
 )
@@ -71,4 +72,15 @@ func GetTicketsByUserUUID(userUUID string) ([]*model.Ticket, error) {
 		tickets = append(tickets, &tk)
 	}
 	return tickets, nil
+}
+
+func UpdateStatusTicket(uuid string, status int) error {
+	if status > model.StatusClosed || status < model.StatusOpen {
+		return errors.New("invalid status")
+	}
+	_, err := DB.Conn.Exec("UPDATE tickets SET status = ? WHERE uuid = ?", status, uuid)
+	if err != nil {
+		return err
+	}
+	return nil
 }

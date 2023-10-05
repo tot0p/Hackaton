@@ -20,6 +20,7 @@ func TicketController(ctx *gin.Context) {
 	if err != nil {
 		ctx.HTML(200, "ticket.html", gin.H{
 			"error": err.Error(),
+			"user":  User,
 		})
 		return
 	}
@@ -31,6 +32,7 @@ func TicketController(ctx *gin.Context) {
 		if err != nil {
 			ctx.HTML(200, "ticket.html", gin.H{
 				"error": err.Error(),
+				"user":  User,
 			})
 			return
 		}
@@ -40,6 +42,7 @@ func TicketController(ctx *gin.Context) {
 		ctx.HTML(200, "ticket.html", gin.H{
 			"ticket": tk,
 			"tchat":  tchat,
+			"user":   User,
 		})
 		return
 	}
