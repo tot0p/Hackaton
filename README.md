@@ -84,3 +84,21 @@ DB_MONGODB=DataSets
 - Exécuter la commande `go run .` à la racine du projet
 
 
+## Doc Api
+
+[Doc Api](./DocApi.md)
+
+## Architecture BDD
+
+![Architecture BDD](./bdd.png)
+
+## Le github Project (équivalent à Trello)
+
+[github project](https://github.com/users/tot0p/projects/5/views/2)
+
+## Auteurs
+
+- [Thomas Lemaitre](https://www.github.com/tot0p)
+- [Sambre](https://www.github.com/sambreVan)
+- [Axel Sénécal](https://www.github.com/axou89)
+- [Luca Morgado](https://www.github.com/mkarten)

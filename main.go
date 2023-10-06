@@ -59,7 +59,7 @@ func main() {
 	//Register
 	r.GET("/register", controller.RegisterController)
 	r.POST("/register", controller.RegisterPostController)
-	
+
 	//Ticket
 	r.GET("/newticket", controller.NewTicketController)
 	r.POST("/newticket", controller.NewTicketPostController)
@@ -74,7 +74,6 @@ func main() {
 	api := r.Group("/api")
 
 	// DataSet
-
 	api.GET("/data/names", controller.DataSetNamesAPIController)
 	api.GET("/data/category", controller.DataSetCategoriesAPIController)
 	api.GET("/data/category/:category", controller.DataSetByCategoryAPIController)
