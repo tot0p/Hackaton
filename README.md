@@ -26,10 +26,16 @@ et pour le reste du site avec [Tailwind](https://tailwindcss.com) pour le style.
 
 - Affichage des datasets
 
+[![Image from Gyazo](https://i.gyazo.com/deb43f336840e619dea99afd6f154ede.gif)](https://gyazo.com/deb43f336840e619dea99afd6f154ede)
+[![Image from Gyazo](https://i.gyazo.com/3d82a10656f13cde6efbd1f917a5d5c1.gif)](https://gyazo.com/3d82a10656f13cde6efbd1f917a5d5c1)
+[![Image from Gyazo](https://i.gyazo.com/addb29f2b3be2d60950398d4fd8552ce.gif)](https://gyazo.com/addb29f2b3be2d60950398d4fd8552ce)
+
 ### Page des tickets (accès restreint aux élus locaux et aux administrateurs)
 
 - affichage des tickets
 - accès au traitement du ticket
+
+[![Image from Gyazo](https://i.gyazo.com/c0bb2976bfaf16fda13d58e13a2dc8ce.gif)](https://gyazo.com/c0bb2976bfaf16fda13d58e13a2dc8ce)
 
 ### Page de traitement du ticket (accès restreint aux élus locaux et aux administrateurs
 
@@ -38,19 +44,29 @@ et pour le reste du site avec [Tailwind](https://tailwindcss.com) pour le style.
 - possibilité de répondre au ticket
 - possibilité de fermer le ticket
 
+Vu admin / elu :
+[![Image from Gyazo](https://i.gyazo.com/39f0cf0bfcc33203cc2044a9652715b6.gif)](https://gyazo.com/39f0cf0bfcc33203cc2044a9652715b6)
+
+Vu citoyen (si c'est son ticket) :
+[![Image from Gyazo](https://i.gyazo.com/231cccfcd7772ce984c52d5c4842b58f.gif)](https://gyazo.com/231cccfcd7772ce984c52d5c4842b58f)
+
 ### Création d'un ticket
 
 - formulaire de création d'un ticket
 - possibilité de lier un dataset
 
+[![Image from Gyazo](https://i.gyazo.com/64d72503ae768835d3bf2081d99b9482.gif)](https://gyazo.com/64d72503ae768835d3bf2081d99b9482)
+
 
 ### Page de connexion
 
 - formulaire de connexion
+  [![Image from Gyazo](https://i.gyazo.com/98df06818fba2b5eef7ab10f4a80751e.gif)](https://gyazo.com/98df06818fba2b5eef7ab10f4a80751e)
 
 ### Page d'inscription
 
 - formulaire d'inscription
+[![Image from Gyazo](https://i.gyazo.com/2e780092b70899ccd6762751cb2635e9.gif)](https://gyazo.com/2e780092b70899ccd6762751cb2635e9)
 
 
 ## Installation

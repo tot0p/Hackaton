@@ -28,7 +28,7 @@ func init() {
 	}
 
 	//Release mode
-	//gin.SetMode(gin.ReleaseMode)
+	gin.SetMode(gin.ReleaseMode)
 
 	// Open browser flag
 	flag.BoolVar(openBrowser, "open", false, "Open browser automatically")
