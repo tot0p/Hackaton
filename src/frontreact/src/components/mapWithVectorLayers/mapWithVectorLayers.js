@@ -7,7 +7,7 @@ const MapArea = ({ areas,areaColor }) => {
   return (
       <div>
         <MapContainer
-            center={[0,0]}
+            center={[areas[0]["area"][0][1],areas[0]["area"][0][0]]}
             zoom={13}
             style={{ width: '100%', height: '400px' }}
         >
