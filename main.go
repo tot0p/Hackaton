@@ -59,10 +59,7 @@ func main() {
 	//Register
 	r.GET("/register", controller.RegisterController)
 	r.POST("/register", controller.RegisterPostController)
-
-	//Profile
-	r.GET("/profil", controller.ProfilController)
-
+	
 	//Ticket
 	r.GET("/newticket", controller.NewTicketController)
 	r.POST("/newticket", controller.NewTicketPostController)
