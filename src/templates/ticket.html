@@ -24,9 +24,9 @@
         {{else}}
             <form id="status" action="/ticket/{{.ticket.UUID}}/status" method="POST">
                 <select name="status" id="status-select">
-                    <option value="0">Ouvert</option>
-                    <option value="1">En cours</option>
-                    <option value="2">Fermé</option>
+                    <option value="0" {{if  eq .ticket.Status 0}}  selected {{end}}>Ouvert</option>
+                    <option value="1" {{if  eq .ticket.Status 1}}  selected {{end}}>En cours</option>
+                    <option value="2" {{if  eq .ticket.Status 2}}  selected {{end}}>Fermé</option>
                 </select>
                 <input type="submit" value="Changer le statut">
             </form>

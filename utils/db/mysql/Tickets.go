@@ -76,7 +76,7 @@ func GetTicketsByUserUUID(userUUID string) ([]*model.Ticket, error) {
 
 // UpdateTicket updates a ticket in the database
 func UpdateStatusTicket(uuid string, status int) error {
-	if status > model.StatusClosed || status < model.StatusOpen {
+	if status > model.StatusInProgress || status < model.StatusOpen {
 		return errors.New("invalid status")
 	}
 	_, err := DB.Conn.Exec("UPDATE tickets SET status = ? WHERE uuid = ?", status, uuid)
