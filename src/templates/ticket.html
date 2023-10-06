@@ -40,7 +40,7 @@
 
             <form id="messageForm" action="/tchat/{{.ticket.UUID}}" method="POST">
                 <textarea id="messageInput" name="msg" placeholder="Répondez ici"></textarea>
-                <input class="hidden-input" name="channel" value="{{.ticket.TchatUUID}}"/>
+                <input class="hidden-input" name="channel" style="display: none" value="{{.ticket.TchatUUID}}"/>
                 <button type="submit">Envoyer</button>
             </form>
         </div>
