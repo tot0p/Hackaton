@@ -1,26 +1,4 @@
 {
-  "subventions-versees": {
-    "graphs": [
-      {
-        "type": "Line",
-        "xAxis": "publication",
-        "series": [
-          "montant_de_la_subvention"
-        ]
-      }
-    ]
-  },
-  "statistiques_de_creation_d_actes_d_etat_civil_par_arrondissement": {
-    "graphs": [
-      {
-        "type": "Line",
-        "xAxis": "arrondissement",
-        "series": [
-          "type_d_acte"
-        ]
-      }
-    ]
-  },
   "logements-sociaux-finances-a-paris": {
     "graphs": [
       {
@@ -37,12 +15,28 @@
       {
         "type": "MapMarker",
         "position": {
-          "posname": "geo_point_2d",
+          "posName": "geo_point_2d",
           "latName": "lat",
           "logName": "lon"
         },
         "labelsName": [
           "nature_programme"
+        ]
+      }
+    ]
+  },
+  "defibrillateurs": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "adr_post",
+          "code_post"
         ]
       }
     ]

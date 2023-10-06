@@ -77,7 +77,7 @@
       {
         "type": "MapMarker",
         "position": {
-          "posname": "geo_point_2d",
+          "posName": "geo_point_2d",
           "latName": "lat",
           "logName": "lon"
         },
@@ -146,6 +146,22 @@
         "labelsName": [
           "nom_restaurant",
           "adresse"
+        ]
+      }
+    ]
+  },
+  "defibrillateurs": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "adr_post",
+          "code_post"
         ]
       }
     ]
