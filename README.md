@@ -120,6 +120,10 @@ DB_MONGODB=DataSets
 
 [Infra](./INFRA.md)
 
+## Figma
+
+[figma](https://www.figma.com/file/wi0RFH62eDRf9gfo0G7qlX/Hackathon?type=design&node-id=1%3A2&mode=design&t=LFW4k9aO7dD35Q1K-1)
+
 ## Auteurs
 
 - [Thomas Lemaitre](https://www.github.com/tot0p)
