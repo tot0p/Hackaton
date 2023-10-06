@@ -29,6 +29,7 @@ et pour le reste du site avec [Tailwind](https://tailwindcss.com) pour le style.
 [![Image from Gyazo](https://i.gyazo.com/deb43f336840e619dea99afd6f154ede.gif)](https://gyazo.com/deb43f336840e619dea99afd6f154ede)
 [![Image from Gyazo](https://i.gyazo.com/3d82a10656f13cde6efbd1f917a5d5c1.gif)](https://gyazo.com/3d82a10656f13cde6efbd1f917a5d5c1)
 [![Image from Gyazo](https://i.gyazo.com/addb29f2b3be2d60950398d4fd8552ce.gif)](https://gyazo.com/addb29f2b3be2d60950398d4fd8552ce)
+[![Image from Gyazo](https://i.gyazo.com/0ac191bb5f91b70bc308071455c0f96c.gif)](https://gyazo.com/0ac191bb5f91b70bc308071455c0f96c)
 
 ### Page des tickets (accès restreint aux élus locaux et aux administrateurs)
 
@@ -36,6 +37,7 @@ et pour le reste du site avec [Tailwind](https://tailwindcss.com) pour le style.
 - accès au traitement du ticket
 
 [![Image from Gyazo](https://i.gyazo.com/c0bb2976bfaf16fda13d58e13a2dc8ce.gif)](https://gyazo.com/c0bb2976bfaf16fda13d58e13a2dc8ce)
+[![Image from Gyazo](https://i.gyazo.com/54d6d09a5621afe8d9f896703ddc84f2.gif)](https://gyazo.com/54d6d09a5621afe8d9f896703ddc84f2)
 
 ### Page de traitement du ticket (accès restreint aux élus locaux et aux administrateurs
 
