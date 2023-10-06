@@ -81,7 +81,7 @@ const AddBoxModal = ({ isOpen, onRequestClose, onConfirm }) => {
 
 export const fetchDataSources = async () => {
     try {
-        const response = await axios.get('http://hackaton.sytes.net:8080/api/data/names');
+        const response = await axios.get('http://localhost:8080/api/data/names');
         return response.data;
     } catch (error) {
         console.error('Error fetching data sources:', error);
