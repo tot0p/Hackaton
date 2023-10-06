@@ -120,7 +120,7 @@ const Dashboard = () => {
 
 const fetchDataFields = async (name) => {
     try {
-        const response = await axios.get("http://localhost:8080/api/data/name/" + name+"/fields?rmId=false&rmMulFields=false");
+        const response = await axios.get("http://hackaton.sytes.net:8080/api/data/name/" + name+"/fields?rmId=false&rmMulFields=false");
         return response.data;
     } catch (error) {
         console.error("Error fetching data sources:", error);
@@ -129,7 +129,7 @@ const fetchDataFields = async (name) => {
 }
 const fetchData = async (name) => {
     try {
-        const response = await axios.get("http://localhost:8080/api/data/name/" + name);
+        const response = await axios.get("http://hackaton.sytes.net:8080/api/data/name/" + name);
         return response.data;
     } catch (error) {
         console.error("Error fetching data sources:", error);
@@ -138,7 +138,7 @@ const fetchData = async (name) => {
 }
 const fetchGraphData = async (name) => {
     try {
-        const response = await axios.get("http://localhost:8080/api/graph/"+name);
+        const response = await axios.get("http://hackaton.sytes.net:8080/api/graph/"+name);
         return response.data;
     } catch (error) {
         console.error("Error fetching data sources:", error);
