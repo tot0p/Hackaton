@@ -86,6 +86,69 @@
         ]
       }
     ]
+  },
+  "fontaines-a-boire": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "type_objet"
+        ]
+      }
+    ]
+  },
+  "sites-disposant-du-service-paris-wi-fi": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "nom_site",
+          "arc_adresse"
+        ]
+      }
+    ]
+  },
+  "kiosques-de-presse": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "type_activite",
+          "adresse"
+        ]
+      }
+    ]
+  },
+  "restaurants-casvp": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "tt",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "nom_restaurant",
+          "adresse"
+        ]
+      }
+    ]
   }
 }
 
