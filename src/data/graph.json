@@ -165,6 +165,22 @@
         ]
       }
     ]
+  },
+  "qualite-de-l-air-concentration-moyenne-no2-pm2-5-pm10" : {
+    "graphs": [
+      {
+        "type": "Line",
+        "xAxis": "annee",
+        "series": [
+          "no2_fond_urbain_moyenne_annuelle_airparif",
+          "pm2_5_fond_urbain_moyenne_annuelle_airparif",
+          "pm10_fond_urbain_moyenne_annuelle_airparif",
+          "o3_moyenne_annuelle_airparif"
+        ]
+      }
+    ]
   }
 }
+  
+
 
