@@ -4,6 +4,7 @@ import DataTableComponent from "../DataTable/DataTable";
 import "./loader2.css";
 import LineGraph from "../LineGraph/LineGraph";
 import MapMarker from "../MapMaker/MapMarker";
+import MapArea from "../mapWithVectorLayers/mapWithVectorLayers";
 
 const DraggableBox = ({ id, text, index, data,graphData,fields,loading,loaded,moveBox, onDelete ,onLoadData}) => {
     const [selectedGraph, setSelectedGraph] = useState('datatable'); // Initial selected graph
@@ -42,6 +43,7 @@ const DraggableBox = ({ id, text, index, data,graphData,fields,loading,loaded,mo
     if (loaded && graphData !== undefined) {
         if (graphData.length > 0) {
             graphData.forEach((graph) => {
+                console.log(graph);
                 if (graph.type === "Line") {
                     graphComponents[graph.type] =
                         <LineGraph data={data} xAxisField={graph.xAxis} SeriesField={graph.series}/>;
@@ -67,6 +69,26 @@ const DraggableBox = ({ id, text, index, data,graphData,fields,loading,loaded,mo
                         }
                     });
                     graphComponents[graph.type] = <MapMarker markers={markers}/>;
+                }
+                if (graph.type === "MapArea") {
+                    // generate areas
+                    let areas = [];
+                    data.forEach((item) => {
+                        if (item[graph.area.areaName] !== null) {
+                            // get the area
+                            if (item[graph.area.areaName][graph.area.geoName]["type"] === "Polygon") {
+                                let area = item[graph.area.areaName][graph.area.geoName][graph.area.cordName][0]
+                                console.log("area", area);
+                                console.log("id", item["id_eqpt"]);
+                                areas.push({
+                                    area
+                                });
+                            }
+
+                        }
+                    });
+                    console.log(areas);
+                    graphComponents[graph.type] = <MapArea areas={areas} areaColor={graph.color}/>;
                 }
             });
         }
