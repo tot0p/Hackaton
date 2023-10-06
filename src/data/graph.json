@@ -11,5 +11,21 @@
         ]
       }
     ]
+  },
+  "arbresremarquablesparis": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geom_x_y",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "com_nom_usuel",
+          "com_resume"
+        ]
+      }
+    ]
   }
 }

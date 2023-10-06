@@ -3,6 +3,7 @@ import { useDrag, useDrop } from 'react-dnd';
 import DataTableComponent from "../DataTable/DataTable";
 import "./loader2.css";
 import LineGraph from "../LineGraph/LineGraph";
+import MapMarker from "../MapMaker/MapMarker";
 
 const DraggableBox = ({ id, text, index, data,graphData,fields,loading,loaded,moveBox, onDelete ,onLoadData}) => {
     const [selectedGraph, setSelectedGraph] = useState('datatable'); // Initial selected graph
@@ -44,6 +45,23 @@ const DraggableBox = ({ id, text, index, data,graphData,fields,loading,loaded,mo
                 if (graph.type === "Line") {
                     graphComponents[graph.type] =
                         <LineGraph data={data} xAxisField={graph.xAxis} SeriesField={graph.series}/>;
+                }
+                if (graph.type === "MapMarker") {
+                    // generate markers
+                    let markers = [];
+                    data.forEach((item) => {
+                        // precompute label
+                        let Label = ""
+                        graph.labelsName.forEach((labelName) => {
+                            Label += item[labelName].toString() + ", ";
+                        });
+                        markers.push({
+                            lat: item[graph.position.posName][graph.position.latName],
+                            lng: item[graph.position.posName][graph.position.logName],
+                            label: Label
+                        });
+                    });
+                    graphComponents[graph.type] = <MapMarker markers={markers}/>;
                 }
             });
         }
