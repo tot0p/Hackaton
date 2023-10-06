@@ -7,9 +7,7 @@ useEffect(() => {
     let xAxis = data.map((item) => {
         return item[xAxisField];
     });
-    console.log(xAxis);
     xAxis= xAxis.sort();
-    console.log(xAxis);
 
     let series = SeriesField.map((SeriesName) => {
         return {
@@ -30,7 +28,6 @@ useEffect(() => {
             }
         }
     });
-    console.log(series);
 
     // Les données du graphique
     const option = {

@@ -55,11 +55,13 @@ const DraggableBox = ({ id, text, index, data,graphData,fields,loading,loaded,mo
                         graph.labelsName.forEach((labelName) => {
                             Label += item[labelName].toString() + ", ";
                         });
-                        markers.push({
-                            lat: item[graph.position.posName][graph.position.latName],
-                            lng: item[graph.position.posName][graph.position.logName],
-                            label: Label
-                        });
+                        if (item[graph.position.posName] !== null) {
+                            markers.push({
+                                lat: item[graph.position.posName][graph.position.latName],
+                                lng: item[graph.position.posName][graph.position.logName],
+                                label: Label
+                            });
+                        }
                     });
                     graphComponents[graph.type] = <MapMarker markers={markers}/>;
                 }

@@ -1,4 +1,3 @@
-// AddBoxModal.js
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import axios from "axios";
@@ -9,16 +8,18 @@ const AddBoxModal = ({ isOpen, onRequestClose, onConfirm }) => {
     const [dataSources, setDataSources] = useState([]);
     const [selectedDataSource, setSelectedDataSource] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [searchText, setSearchText] = useState('');
 
     const fetchData = async () => {
         setIsLoading(true);
         try {
             const sources = await fetchDataSources();
+            // sort the sources alphabetically
+            sources.sort();
             setDataSources(sources);
             if (sources.length > 0) {
                 setSelectedDataSource(sources[0]); // Set the first source as the default
             }
-            // add a fake delay to show the loading indicator
         } catch (error) {
             console.error('Error fetching data sources:', error);
         } finally {
@@ -37,6 +38,10 @@ const AddBoxModal = ({ isOpen, onRequestClose, onConfirm }) => {
         onConfirm(selectedDataSource);
     };
 
+    const filteredDataSources = dataSources.filter((source) =>
+        source.toLowerCase().includes(searchText.toLowerCase())
+    );
+
     return (
         <Modal
             isOpen={isOpen}
@@ -49,11 +54,17 @@ const AddBoxModal = ({ isOpen, onRequestClose, onConfirm }) => {
             ) : (
                 <>
                     <p>Select a data source for the box:</p>
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                    />
                     <select
                         value={selectedDataSource}
                         onChange={(e) => setSelectedDataSource(e.target.value)}
                     >
-                        {dataSources.map((source) => (
+                        {filteredDataSources.map((source) => (
                             <option key={source} value={source}>
                                 {source}
                             </option>
@@ -66,7 +77,6 @@ const AddBoxModal = ({ isOpen, onRequestClose, onConfirm }) => {
         </Modal>
     );
 };
-
 
 export const fetchDataSources = async () => {
     try {
