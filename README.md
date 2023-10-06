@@ -90,7 +90,7 @@ DB_MONGODB=DataSets
 
 ## Architecture BDD
 
-![Architecture BDD](./bdd.png)
+![Architecture BDD](./img/image.png)
 
 ## Le github Project (équivalent à Trello)
 
