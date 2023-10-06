@@ -52,10 +52,13 @@ const DraggableBox = ({ id, text, index, data,graphData,fields,loading,loaded,mo
                     data.forEach((item) => {
                         // precompute label
                         let Label = ""
-                        graph.labelsName.forEach((labelName) => {
-                            Label += item[labelName].toString() + ", ";
-                        });
                         if (item[graph.position.posName] !== null) {
+                        graph.labelsName.forEach((labelName) => {
+                            if (item[labelName] !== null){
+                                Label += item[labelName].toString() + ", ";
+                            }
+                        });
+
                             markers.push({
                                 lat: item[graph.position.posName][graph.position.latName],
                                 lng: item[graph.position.posName][graph.position.logName],
