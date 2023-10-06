@@ -116,6 +116,10 @@ DB_MONGODB=DataSets
 
 [github project](https://github.com/users/tot0p/projects/5/views/2)
 
+## Infra
+
+[Infra](./INFRA.md)
+
 ## Auteurs
 
 - [Thomas Lemaitre](https://www.github.com/tot0p)
