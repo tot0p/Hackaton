@@ -353,6 +353,18 @@
         ]
       }
     ]
+  },
+  "espaces_verts":{
+    "graphs": [{
+      "type": "MapArea",
+      "area": {
+        "areaName": "geom",
+        "geoName": "geometry",
+        "cordName": "coordinates"
+      },
+      "color": "#00FF00"
+      }
+    ]
   }
 }
   
