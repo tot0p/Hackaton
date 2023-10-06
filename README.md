@@ -63,11 +63,13 @@ Vu citoyen (si c'est son ticket) :
 ### Page de connexion
 
 - formulaire de connexion
-  [![Image from Gyazo](https://i.gyazo.com/98df06818fba2b5eef7ab10f4a80751e.gif)](https://gyazo.com/98df06818fba2b5eef7ab10f4a80751e)
+
+[![Image from Gyazo](https://i.gyazo.com/98df06818fba2b5eef7ab10f4a80751e.gif)](https://gyazo.com/98df06818fba2b5eef7ab10f4a80751e)
 
 ### Page d'inscription
 
 - formulaire d'inscription
+
 [![Image from Gyazo](https://i.gyazo.com/2e780092b70899ccd6762751cb2635e9.gif)](https://gyazo.com/2e780092b70899ccd6762751cb2635e9)
 
 
