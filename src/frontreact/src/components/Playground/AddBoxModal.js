@@ -61,9 +61,10 @@ const AddBoxModal = ({ isOpen, onRequestClose, onConfirm }) => {
                         onChange={(e) => setSearchText(e.target.value)}
                     />
                     <select
-                        value={selectedDataSource}
+                        value=""
                         onChange={(e) => setSelectedDataSource(e.target.value)}
                     >
+                        <option value="">-- Select a data source --</option>
                         {filteredDataSources.map((source) => (
                             <option key={source} value={source}>
                                 {source}
