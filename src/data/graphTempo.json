@@ -1,44 +1,4 @@
 {
-  "donnees-annuelles": {
-    "graphs": [
-      {
-        "type": "Line",
-        "xAxis": "annee",
-        "series": [
-          "itineraires_cyclables",
-          "subvention_professionnels",
-          "subvention_vae_particuliers"
-        ]
-      }
-    ]
-  },
-  "arbresremarquablesparis": {
-    "graphs": [
-      {
-        "type": "MapMarker",
-        "position": {
-          "posName": "geom_x_y",
-          "latName": "lat",
-          "logName": "lon"
-        },
-        "labelsName": [
-          "com_nom_usuel",
-          "com_resume"
-        ]
-      }
-    ]
-  },
-    "compte-de-resultat" : {
-      "graphs": [
-        {
-          "type": "Line",
-          "xAxis": "exercice_comptable",
-          "series": [
-            "montant_en_eur"
-          ]
-        }
-      ]
-    },
   "subventions-versees": {
     "graphs": [
       {
@@ -88,4 +48,3 @@
     ]
   }
 }
-
