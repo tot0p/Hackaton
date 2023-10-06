@@ -179,6 +179,21 @@
         ]
       }
     ]
+  },
+  "belib-points-de-recharge-pour-vehicules-electriques-disponibilite-temps-reel": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "coordonneesxy",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "adresse_station"
+        ]
+      }
+    ]
   }
 }
   
