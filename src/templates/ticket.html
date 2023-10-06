@@ -7,25 +7,44 @@
     <link rel="stylesheet" href="../static/css/ticket.css">
 </head>
 <body>
+    {{template "navbar.html" .}}
     <div class="ticket-container">
         <h1 class="centered-title">{{.ticket.Subject}}</h1>
         <p class="content">{{.ticket.Content}}</p>
         <p class="linked-data">{{.ticket.LinkedData}}</p>
         <p class="date">{{.ticket.CreatedAt}}</p>
-        <p class="status">{{.ticket.Status}}</p>
-
+        {{if eq .user.Role 2}}
+        {{if eq .ticket.Status 0}}
+            <p class="status">Statut : Ouvert</p>
+        {{else if eq .ticket.Status 1}}
+            <p class="status">Statut : En cours</p>
+        {{else}}
+            <p class="status">Statut : Fermé</p>
+        {{end}}
+        {{else}}
+            <form id="status" action="/ticket/{{.ticket.UUID}}/status" method="POST">
+                <select name="status" id="status-select">
+                    <option value="0">Ouvert</option>
+                    <option value="1">En cours</option>
+                    <option value="2">Fermé</option>
+                </select>
+                <input type="submit" value="Changer le statut">
+            </form>
+        {{end}}
         <div class="chat-section">
-            {{range .tchat}}
-                <div id="messages">{{.Msg}} de {{.Author}}</div>
-            {{end}}
-
+            <div id="messages-box">
+                {{range .tchat}}
+                    <div class="message-item">{{.Msg}} de {{.Author}}</div>
+                {{end}}
+            </div>
 
             <form id="messageForm" action="/tchat/{{.ticket.UUID}}" method="POST">
-                <textarea id="messageInput" name="msg" placeholder="Répond ici bg"></textarea>
-                <input style="display: none" name="channel" value="{{.ticket.TchatUUID}}"/>
+                <textarea id="messageInput" name="msg" placeholder="Répondez ici"></textarea>
+                <input class="hidden-input" name="channel" value="{{.ticket.TchatUUID}}"/>
                 <button type="submit">Envoyer</button>
             </form>
         </div>
     </div>
+    {{template "footer.html" .}}
 </body>
 </html>

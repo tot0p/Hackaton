@@ -28,4 +28,17 @@
       }
     ]
   }
+  ,
+    "compte-de-resultat" : {
+      "graphs": [
+        {
+          "type": "Line",
+          "xAxis": "exercice_comptable",
+          "series": [
+            "montant_en_eur"
+          ]
+        }
+      ]
+    }
 }
+
