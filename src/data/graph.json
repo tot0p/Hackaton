@@ -210,6 +210,149 @@
         ]
       }
     ]
+  },
+  "etablissements-scolaires-maternelles": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "libelle"
+        ]
+      }
+    ]
+  },
+  "etablissements-scolaires-ecoles-elementaires": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "libelle"
+        ]
+      }
+    ]
+  },
+  "etablissements-scolaires-colleges": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "libelle"
+        ]
+      }
+    ]
+  },
+  "liste-des-ehpad": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "coordonnees",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "nom_de_l_ehpad"
+        ]
+      }
+    ]
+  },
+  "bornes-dappel-taxi": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "nom",
+          "adresse",
+          "emplacements"
+        ]
+      }
+    ]
+  },
+  "modules-sonores-passages-pietons": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "libell_secteur",
+          "libell_voie"
+        ]
+      }
+    ]
+  },
+  "liste-des-stations-de-services-de-vehicules": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "adresse",
+          "code_post",
+          "motorisation"
+        ]
+      }
+    ]
+  },
+  "horodateurs-mobiliers": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "adresse",
+          "regime",
+          "tarif"
+        ]
+      }
+    ]
+  },
+  "velib-emplacement-des-stations": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "coordonnees_geo",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "name",
+          "capacity"
+        ]
+      }
+    ]
   }
 }
   
