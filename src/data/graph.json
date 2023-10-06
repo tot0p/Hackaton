@@ -194,6 +194,22 @@
         ]
       }
     ]
+  },
+  "stationnement-voie-publique-emplacements": {
+    "graphs": [
+      {
+        "type": "MapMarker",
+        "position": {
+          "posName": "geo_point_2d",
+          "latName": "lat",
+          "logName": "lon"
+        },
+        "labelsName": [
+          "typevoie",
+          "regpri"
+        ]
+      }
+    ]
   }
 }
   
